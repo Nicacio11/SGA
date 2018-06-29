@@ -72,7 +72,7 @@
 		    </div>
 		    <div class="col s3">
 		      <img class="circle responsive-img" src="assets/images/gg.jpg">
-		      <h7>Contato</h7>
+		      <h7>Evento</h7>
 		    </div>
 		    <div class="col s3">
 		      <img class="circle responsive-img" src="assets/images/gg.jpg">
@@ -82,11 +82,11 @@
 		      <div class="card">
 		        <div class="card-image">
 		          <img src="assets/images/gg.jpg">
-		          <span class="card-title">Card Title</span>
+		          <span class="card-title">Ministério</span>
 		          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
 		        </div>
 		        <div class="card-content">
-		          <p>I am a very simple card.</p>
+		          <p>.</p>
 		        </div>
 		      </div>
 		    </div>
