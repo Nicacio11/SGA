@@ -9,6 +9,7 @@ $(function(){
 
 		$('.dropdown-trigger').dropdown();
 		$('.dropdown-trigger').dropdown('recalculateDimensions')
+
 });
 function next(){
 	$('.carousel').carousel('next');

@@ -1,3 +1,25 @@
+@-webkit-keyframes fadeIn {
+0% { opacity: 0; }
+100% { opacity: 1; }
+}
+@-moz-keyframes fadeIn {
+0% { opacity: 0;}
+100% { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+0% { opacity: 0; }
+100% { opacity: 1; }
+}
+@keyframes fadeIn {
+0% { opacity: 0; }
+100% { opacity: 1; }
+}
+.fadeIn {
+-webkit-animation: fadeIn 3s ease-in-out;
+-moz-animation: fadeIn 3s ease-in-out;
+-o-animation: fadeIn 3s ease-in-out;
+animation: fadeIn 3s ease-in-out;
+}
 body{
  	margin: 0;
 }
@@ -5,15 +27,28 @@ h3{
 	color: white;
 }
 
+.change{
+  color: black!important;
+}
+
 .menud{
   width: 130px;
   text-align: center;
 }
+
+.imgimg{
+  background-size: contain!important;
+  background-position: center!important;
+  background-repeat: no-repeat!important;
+  background-origin: inherit!important;
+}
+
 .slider{
-	margin-bottom: 200px;
-	background-color: #4db6ac;
+	margin-bottom: 250px;
+	background-color: #0288d1;
 	padding-bottom:  5px!important;
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+
 }
 
 
@@ -23,13 +58,26 @@ h3{
 
 .about{
 	padding: 5px;
-	background-color: #4db6ac;
+	background-color: #ffd54f;
+  background-image: url('../images/teste.jpg');
+  background-position: center;
+background-attachment: fixed;
+  background-size: cover;
+
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 	margin-bottom:200px!important;
 }
 .activities{
 	text-align: center;
 	background-color: #00695c;
+  background-image: url('../images/about.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-attachment: fixed;
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 	padding:5px!important;
 	margin-bottom: 150px;
@@ -70,10 +118,12 @@ h3{
     border-color: white;
 }
 .photos-and-video{
-	background-color: #006064;
+	background-color: #81c784;
 	padding: 5px;
 	text-align: right;
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+
+  background: linear-gradient(to bottom right, #0288d1, #00695c);
 
 }
 .photos-and-video .vermais{
