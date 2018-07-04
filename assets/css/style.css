@@ -4,10 +4,11 @@ body{
 h3{
 	color: white;
 }
-nav{
-	
-}
 
+.menud{
+  width: 130px;
+  text-align: center;
+}
 .slider{
 	margin-bottom: 200px;
 	background-color: #4db6ac;
@@ -48,7 +49,9 @@ nav{
 	border-radius: 3px;
 	padding: 5px;
 }
-
+.reflexion{
+  margin-bottom: 60px;
+}
 .reflexion h5, h6{
 	color: white;
 	text-align: center;
@@ -71,6 +74,15 @@ nav{
 	padding: 5px;
 	text-align: right;
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+
+}
+.photos-and-video .vermais{
+  text-align: right;
+
+}
+.photos-and-video .vermais a{
+  text-decoration: none;
+  color: #fff;
 }
 .photos-and-video h5{
 	text-align: center;
