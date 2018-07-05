@@ -20,8 +20,14 @@
 -o-animation: fadeIn 3s ease-in-out;
 animation: fadeIn 3s ease-in-out;
 }
+html{
+  height: 100%;
+  margin: 0;
+
+}
 body{
  	margin: 0;
+  height: 100%;
 }
 h3{
 	color: white;
@@ -32,24 +38,31 @@ h3{
 .menud{
   width: 130px;
   text-align: center;
+  transition: all 2s;
+  -webkit-transition:all 2s;
 }
 .imgimg{
   background-size: contain!important;
   background-position: center!important;
   background-repeat: no-repeat!important;
   background-origin: inherit!important;
+  transition: all 2s;
+  -webkit-transition:all 2s;
 }
-.slider{
-	margin-bottom: 250px;
+.carouselinicio{
+	margin-bottom: 200px;
 	background-color: #0288d1;
 	padding-bottom:  5px!important;
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-
+  transition: all 2s;
+  -webkit-transition:all 2s;
 }
 
 
 .aboutus{
 	text-align: center;
+  transition: all 2s;
+  -webkit-transition:all 2s;
 }
 
 .about{
@@ -60,8 +73,11 @@ h3{
 background-attachment: fixed;
   background-size: cover;
 
+
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 	margin-bottom:200px!important;
+  transition: all 2s;
+  -webkit-transition:all 2s;
 }
 .activities{
 	text-align: center;
@@ -77,7 +93,10 @@ background-attachment: fixed;
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 	padding:5px!important;
 	margin-bottom: 150px;
+  transition: all 2s;
+  -webkit-transition:all 2s;
 }
+
 .img-thumbnail {
     padding: .25rem;
     background-color: #fff;
@@ -86,6 +105,8 @@ background-attachment: fixed;
     max-width: 100%;
     height: auto;
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    transition: all 2s;
+    -webkit-transition:all 2s;
 }
 
 .activities-link{
@@ -95,14 +116,21 @@ background-attachment: fixed;
 }
 .reflexion{
   margin-bottom: 60px;
+  transition: all 2s;
+  -webkit-transition:all 2s;
 }
 .reflexion h5, h6{
 	color: white;
 	text-align: center;
+  transition: all 2s;
+  -webkit-transition:all 2s;
 }
+
 .reflexion h6{
 	font-style: italic;
 	text-decoration: underline;
+  transition: all 2s;
+  -webkit-transition:all 2s;
 }
 .reflexion blockquote{
 	font-family: monospace, monospace;
@@ -112,6 +140,8 @@ background-attachment: fixed;
     white-space: pre-wrap;
     margin: 1em 0px;
     border-color: white;
+    transition: all 2s;
+    -webkit-transition:all 2s;
 }
 .photos-and-video{
 	background-color: #81c784;
@@ -119,19 +149,51 @@ background-attachment: fixed;
 	text-align: right;
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
   background: linear-gradient(to bottom right, #0288d1, #00695c);
+  transition: all 2s;
+  -webkit-transition:all 2s;
 }
-.photos-and-video .vermais{
+.btn-color-linear{
+  transition: all 2s;
+  -webkit-transition:all 2s;
+  background: linear-gradient(to bottom right, #0288d1, #00695c);
+}
+.carousel-background{
+  transition: all 2s;
+  -webkit-transition:all 2s;
+  background: linear-gradient(to bottom right, #A45D8F, #454B83);
+  color: linear-gradient(to bottom right, #A45D8F, #454B83);
+}
+.vermais{
+  transition: all 2s;
+  -webkit-transition:all 2s;
   text-align: right;
 
 }
-.photos-and-video .vermais a{
+.vermais a{
+  transition: all 2s;
+  -webkit-transition:all 2s;
   text-decoration: none;
   color: #fff;
 }
 .photos-and-video h5{
+  transition: all 2s;
+  -webkit-transition:all 2s;
 	text-align: center;
 	color: #FFF;
 }
+
 iframe{
+  transition: all 2s;
+  -webkit-transition:all 2s;
 	margin: auto;
+}
+
+@media only screen and (max-width: 1154px){
+  .nav-wrapper{
+    text-align: center;
+  }
+  .change{
+    font-size: 20px;
+    text-align: center;
+  }
 }

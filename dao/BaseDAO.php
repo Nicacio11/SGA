@@ -1,6 +1,6 @@
 <?php
   class BaseDAO{
-    protected $db
+    protected $db;
 
     public function __construct(){
 
