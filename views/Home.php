@@ -61,22 +61,31 @@
 	      <div class="carousel-fixed-item center">
 	        <a class="btn waves-effect white grey-text darken-text-2">button</a>
 	      </div>
-	      <div class="carousel-item carousel-background white-text " href="#one!">
+	      <div class="carousel-item white-text car"
+				style="background-image:url('<?php echo BASE_URL; ?>/assets/images/praying.jpg')"
+					 href="#one!">
+
 	        <h2>First Panel</h2>
 	        <p class="white-text">This is your first panel</p>
 	      </div>
-	      <div class="carousel-item carousel-background white-text" href="#two!">
+	      <div class="carousel-item white-text car"
+				style="background-image:url('<?php echo BASE_URL; ?>/assets/images/praying2.jpg')"
+					  href="#two!">
 	        <h2>Second Panel</h2>
 	        <p class="white-text">This is your second panel</p>
-	      </div>
-	      <div class="carousel-item carousel-background white-text" href="#three!">
+				</div>
+	      <div class="carousel-item car white-text"
+				style="background-image:url('<?php echo BASE_URL; ?>/assets/images/praying3.jpg')"
+					  href="#three!">
 	        <h2>Third Panel</h2>
 	        <p class="white-text">This is your third panel</p>
-	      </div>
-	      <div class="carousel-item carousel-background white-text" href="#four!">
+				</div>
+	      <div class="carousel-item car white-text"
+				style="background-image:url('<?php echo BASE_URL; ?>/assets/images/teste.jpg')"
+					  href="#four!">
 	        <h2>Fourth Panel</h2>
 	        <p class="white-text">This is your fourth panel</p>
-	      </div>
+				</div>
 	    </div>
 		  <div class="about">
 		  	 <div class="container">

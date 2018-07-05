@@ -62,7 +62,13 @@ h3{
   -webkit-transition:all 2s;
 }
 
+.car{
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
+}
 .aboutus{
 	text-align: center;
   transition: all 2s;
