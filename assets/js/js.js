@@ -1,14 +1,16 @@
 M.AutoInit();
 $(function(){
-	 $(document).ready(function(){
-    $('.slider').slider();
-  });
+
 	$('.carousel.carousel-slider').carousel({
-	    fullWidth: true
+	    fullWidth: true,
+			indicators: true
+
 	  });
 
 		$('.dropdown-trigger').dropdown();
 		$('.dropdown-trigger').dropdown('recalculateDimensions')
+
+		setInterval("next()", 7000);
 
 });
 function next(){

@@ -7,6 +7,12 @@
     private $foto;
     private $tipo;
 
+    public function __construct($id = null, $titulo, $descricao, $foto){
+      $this->id = ($id!=null?$id:null);
+      $this->titulo = $titulo;
+      $this->descricao = $descricao;
+      $this->foto = $foto;
+    }
     public function getId(){
       return $this->id;
     }

@@ -4,6 +4,6 @@
   if(ENVIRONMENT=='development'){
     define("BASE_URL", "http://localHost/SGA");
   }else{
-      
+      define("BASE_URL", "http://localHost/SGA");
   }
 
