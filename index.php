@@ -1,7 +1,7 @@
 
 <?php
+    session_start();
     require './environment.php';
-
 
     spl_autoload_register(function($class){
 

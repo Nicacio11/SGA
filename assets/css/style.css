@@ -172,6 +172,10 @@ h3{
   -webkit-transition:all 2s;
   background: linear-gradient(to bottom right, #A45D8F, #454B83);
   color: linear-gradient(to bottom right, #A45D8F, #454B83);
+  margin:auto;
+  color: #fff;
+
+
 }
 .vermais{
   transition: all 2s;
@@ -197,11 +201,26 @@ iframe{
   -webkit-transition:all 2s;
 	margin: auto;
 }
+.loginRow{
+  padding-top: 200px!important;
+  padding-bottom: 84px!important;
+  background-image: url('../images/praying3.jpg')!important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 
-@media only screen and (max-width: 1154px){
+}
+.sizeForm{
+  height: 350px;
+}
+.form-item{
+  margin:20px!important;
+}
+@media only screen and (max-width: 1154px ){
   .nav-wrapper{
     text-align: center;
   }
+
   .change{
     font-size: 20px;
     text-align: center;
