@@ -29,7 +29,7 @@
 									</div>
 									<div class="form-item">
 										<label for="usuario">Senha</label>
-										<input placeholder="Senha" type="password" id="senha" required class="validate" autocomplete="" />
+										<input class="text-white" placeholder="Senha" type="password" id="senha" required class="validate" autocomplete="" />
 
 									</div class="form-item">
 									<div class="center-align">
