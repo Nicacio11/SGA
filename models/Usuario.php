@@ -1,7 +1,7 @@
 <?php
   /*
-    *Description - Classe modelo para os usuarios do sistema
-    *@author Vitor Nicacio
+    * Description - Classe modelo para os usuarios do sistema
+    * @author Vitor Nicacio
     @param id - id do usuario
     @param usuario - login do usuario
     @param senha - senha do usuario
@@ -37,4 +37,3 @@
       $this->imagePath=$imagePath;
     }
   }
-
