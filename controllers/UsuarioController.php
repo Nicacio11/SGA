@@ -21,6 +21,8 @@
         if($user != null){
           $_SESSION['usuario'] = serialize($user);
           echo "Logado com sucesso";
+          //var_dump($_SESSION['usuario']);
+          echo unserialize( $_SESSION['usuario'] )->getUsuario();
         }
         else{
           echo "Usuário e/ou senha incorretos ou inexistentes";

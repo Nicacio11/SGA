@@ -7,7 +7,7 @@
       try{
 
         if(ENVIRONMENT=='development'){
-        //  $this->db = new PDO("" , "","");
+          $this->db = new PDO("mysql:dbname=sga;host=localhost" , "root","");
         }else{
           $this->db = new PDO("" , "","");
         }

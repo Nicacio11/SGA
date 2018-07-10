@@ -1,4 +1,5 @@
-CREATE DATABASE sga;
+CREATE DATABASE sga CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 USE sga;
 
 CREATE TABLE IF NOT EXISTS usuario(
@@ -13,7 +14,8 @@ CREATE TABLE IF NOT EXISTS usuario(
 CREATE TABLE IF NOT EXISTS usuario_foto(
   idUsuario_foto INT(10) PRIMARY KEY AUTO_INCREMENT,
   Usuario_idUsuario INT(10) not null,
-  imagePath VARCHAR(50) not null
+  imagePath VARCHAR(50) not null,
+  FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
 
 
@@ -28,7 +30,8 @@ CREATE TABLE IF NOT EXISTS ministerio(
   Coordenador_idCoordenador INT(10) not null,
   Usuario_idUsuario INT(10) not null,
   descricao VARCHAR(150) not null,
-  nome VARCHAR(30) not null
+  nome VARCHAR(30) not null,
+  FOREIGN KEY(Coordenador_idCoordenador) REFERENCES coordenador(idCoordenador)
 );
 
 CREATE TABLE IF NOT EXISTS video(
@@ -36,13 +39,15 @@ CREATE TABLE IF NOT EXISTS video(
     Usuario_idUsuario INT(10) not null,
     titulo VARCHAR(25) not null,
     descricao VARCHAR(150) not null,
-    url VARCHAR(50) not null
+    url VARCHAR(50) not null,
+    FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
 CREATE TABLE IF NOT EXISTS quemsomos(
     idQuemSomos INT(10) PRIMARY KEY AUTO_INCREMENT,
     Usuario_idUsuario INT(10) not null,
     titulo VARCHAR(25) not null,
-    descricao VARCHAR(150) not null
+    descricao VARCHAR(150) not null,
+    FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
 
 CREATE TABLE IF NOT EXISTS testemunho(
@@ -50,7 +55,8 @@ CREATE TABLE IF NOT EXISTS testemunho(
     Usuario_idUsuario INT(10) not null,
     email VARCHAR(50) not null,
     descricao VARCHAR(150) not null,
-    nome VARCHAR(30) not null
+    nome VARCHAR(30) not null,
+    FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
 CREATE TABLE IF NOT EXISTS pedido(
     idPedido INT(10) PRIMARY KEY AUTO_INCREMENT,
@@ -58,7 +64,8 @@ CREATE TABLE IF NOT EXISTS pedido(
     email VARCHAR(50) not null,
     descricao VARCHAR(150) not null,
     nomePessoa VARCHAR(30) not null,
-    emailPessoa VARCHAR(50) not null
+    emailPessoa VARCHAR(50) not null,
+    FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
 CREATE TABLE IF NOT EXISTS pedido_pessoa(
     idPessoa INT(10) PRIMARY KEY AUTO_INCREMENT,
@@ -72,7 +79,8 @@ CREATE TABLE IF NOT EXISTS reflexao(
     Usuario_idUsuario INT(10) not null,
     titulo VARCHAR(100) not null,
     corpo VARCHAR(400) not null,
-    data DATETIME not null
+    data DATETIME not null,
+    FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
 
 CREATE TABLE IF NOT EXISTS atividade(
@@ -80,18 +88,25 @@ CREATE TABLE IF NOT EXISTS atividade(
     Usuario_idUsuario INT(10) not null,
     titulo VARCHAR(105) not null,
     descricao VARCHAR(350) not null,
-    imagePath VARCHAR(50),
-    tipo char(1) -- 1 atividades regulares 2 - eventos
+    tipo char(1), -- 1 atividades regulares 2 - eventos
+    FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
+);
+CREATE TABLE IF NOT EXISTS atividade_foto(
+  idAtividade_foto INT(10) PRIMARY KEY AUTO_INCREMENT,
+  Atividade_idAtividade INT(10) not null,
+  imagePath VARCHAR(50) not null,
+  FOREIGN KEY(Atividade_idAtividade) REFERENCES atividade(idAtividade)
 );
 
 CREATE TABLE IF NOT EXISTS galeria(
     idGaleria INT(10) PRIMARY KEY AUTO_INCREMENT,
     Usuario_idUsuario INT(10) not null,
     titulo VARCHAR(105) not null,
+    FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
 
 CREATE TABLE IF NOT EXISTS galeria_foto(
     idGaleria_Foto INT(10) PRIMARY KEY AUTO_INCREMENT,
     Galera_idGaleria INT(10) not null,
-    imagePath VARCHAR(50) not null,
+    imagePath VARCHAR(50) not null
 );

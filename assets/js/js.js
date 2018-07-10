@@ -1,4 +1,11 @@
 M.AutoInit();
+var environment = "development";
+var url;
+if(environment == "development"){
+	url="http://localhost/SGA";
+}else{
+
+}
 $(function(){
 
 	$('.carousel.carousel-slider').carousel({
@@ -29,7 +36,7 @@ function logar(){
 
 		//previne ação padrão que é enviar o formulario
 		$.ajax({
-			url:'http://localhost/SGA/Usuario/login',
+			url: url+'/Usuario/login',
 			type:'post',
 			data:{usuario: user, senha: pass},
 			success: function(r){

@@ -6,14 +6,14 @@
     @param usuario - login do usuario
     @param senha - senha do usuario
     @param nome - nome do usuario
-    @param imagePath - caminho da imagme
+    @param Foto - caminho da imagme
   */
   class Usuario{
     private $id;
     private $usuario;
     private $senha;
     private $nome;
-    private $imagePath;
+    private $foto;
 
     public function getId(){
       return $this->id;
@@ -30,10 +30,17 @@
     public function setSenha($senha){
       $this->senha-$senha;
     }
-    public function getImagePath(){
-      return $this->imagePath;
+    public function getFoto(){
+      return $this->foto;
     }
-    public function setImagePath($imagePath){
-      $this->imagePath=$imagePath;
+    public function setFoto($foto){
+      $this->foto=$foto;
+    }
+    public function setUsuario($usuario){
+      $this->usuario =  $usuario;
+    }
+
+    public function getUsuario(){
+      return $this->usuario;
     }
   }
