@@ -20,7 +20,11 @@
                 <li><a href="#!" class="waves-effect waves-light">Testemunhos</a></li>
 
                 <li><a href="#" class="waves-effect waves-light">Quem Somos</a></li>
-                <li><a href="<?php BASE_URL?>Usuario" class="waves-effect waves-light">Área de login</a></li>
+                <li>
+                  <a href="<?php BASE_URL?>Usuario" class="waves-effect waves-light">
+                  <i class="material-icons" style="margin-right:3px;">lock</i>
+                  Área de login
+                </a></li>
               </ul>
           </ul>
         </div>
@@ -35,7 +39,10 @@
         <li><a href="#!" class="waves-effect waves-light">Vídeos</a></li>
         <li><a href="#!" class="waves-effect waves-light">Testemunhos</a></li>
         <li><a href="#" class="waves-effect waves-light">Quem Somos</a></li>
-        <li><a href="<?php BASE_URL?>Usuario" class="waves-effect waves-light">Área de login</a></li>
+        <li><a href="<?php BASE_URL?>Usuario" class="waves-effect waves-light">
+          <i class="material-icons" >lock</i>
+          Área de login</a>
+        </li>
       </ul>
 
 

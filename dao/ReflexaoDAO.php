@@ -12,5 +12,6 @@ class ReflexaoDAO extends BaseDAO{
     $sql->bindValue(":data", "NOW()");
     $sql->bindValue(":corpo", $reflexao->getCorpo());
     $sql->bindValue(":idUsuario", unserialize($_SESSION['usuario'])->getId());
+    $sql->execute();
   }
 }

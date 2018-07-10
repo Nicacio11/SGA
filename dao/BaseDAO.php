@@ -7,7 +7,7 @@
       try{
 
         if(ENVIRONMENT=='development'){
-          $this->db = new PDO("" , "","");
+        //  $this->db = new PDO("" , "","");
         }else{
           $this->db = new PDO("" , "","");
         }

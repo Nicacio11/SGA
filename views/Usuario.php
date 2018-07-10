@@ -22,18 +22,21 @@
 					<div class="row">
 						<div class="col s12 offset-m4 m4 offset-m4">
 							<div class="card-panel carousel-background sizeForm">
-								<form method="post" >
+								<form method="post" id="formulario">
 									<div class="form-item">
 										<label for="usuario">Usuário</label>
-										<input class="text-white" placeholder="Usuário" type="text" id="usuario" required class="validate" autocomplete="off" />
+										<input class="text-white" placeholder="Usuário" type="text" name="usuario" id="usuario" required class="validate" autocomplete="off" />
 									</div>
 									<div class="form-item">
 										<label for="usuario">Senha</label>
-										<input class="text-white" placeholder="Senha" type="password" id="senha" required class="validate" autocomplete="" />
+										<input placeholder="Senha" type="password" id="senha"  name="senha" required class="validate" autocomplete="" />
 
 									</div class="form-item">
 									<div class="center-align">
 										<input type="submit" class="btn carousel-background pulse waves-effect waves-dark" value="Entrar"/>
+									</div>
+									<div>
+										<p class="msg center-align"></p>
 									</div>
 								</form>
 							</div>
