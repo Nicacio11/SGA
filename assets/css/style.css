@@ -210,6 +210,21 @@ iframe{
   background-attachment: fixed;
 
 }
+.pessoa{
+  width: 150px!important;
+}
+.panel{
+  padding:20px;
+}
+.painel{
+  background-image: url('../images/praying4.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+}
+.painelInterno{
+  margin-top:80px;
+  margin-bottom: 60px;
+}
 .sizeForm{
   height: 350px;
 }

@@ -31,10 +31,10 @@
     public function setSenha($senha){
       $this->senha=md5($senha);
     }
-    public function getImage(){
+    public function getImage(): Image{
       return $this->image;
     }
-    public function setImage($image){
+    public function setImage(Image $image){
       $this->image=$image;
     }
     public function setUsuario($usuario){
@@ -48,7 +48,7 @@
       $this->active =  $active;
     }
 
-    public function getUsuario(){
+    public function getActive(){
       return $this->active;
     }
 

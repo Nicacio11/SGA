@@ -43,7 +43,7 @@
     * Description - insere image no banco
     * @author Vitor
     * @param id - ultimo id de usuario adicionado
-    * @param image - objeto image
+    * @param image {Image} - objeto image
     */
     public function insertImage($id, $image){
 
@@ -52,16 +52,17 @@
       $sql->bindValue(":imagePath", $image->getImagePath());
       $sql->execute();
     }
-    public function getImage($id){
+    public function getImage($id):Image{
       $foto;
 
-      $sql = $this->db->prepare("SELECT imagePath FROM usuario_foto WHERE Usuario_idUsuario = :id");
+      $sql = $this->db->prepare("SELECT idUsuario_image ,imagePath FROM usuario_image WHERE Usuario_idUsuario = :id");
       $sql->bindValue(":id", $id);
       $sql->execute();
 
       if($sql->rowCount()>0){
         $dado = $sql->fetch();
-        $foto = new Foto();
+        $foto = new Image();
+        $foto->setId($dado['idUsuario_image']);
         $foto->setImagePath($dado['imagePath']);
         return $foto;
       }

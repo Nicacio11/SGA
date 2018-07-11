@@ -7,20 +7,20 @@
       public function loadView($viewName, $viewData = array()){
         //faz com que cada key e valor do array seja transformado em variavel e valor
         extract($viewData);
-        require 'views/'.$viewName.'.php';
+        require_once 'views/'.$viewName.'.php';
 
       }
 
       public function loadTemplate($viewName, $viewData = array()){
         //faz com que cada key e valor do array seja transformado em variavel e valor
         extract($viewData);
-        require 'views/template.php';
+        require_once 'views/templatePanel.php';
       }
 
       public function loadInTemplate($viewName, $viewData = array()){
         //faz com que cada key e valor do array seja transformado em variavel e valor
         extract($viewData);
-        require 'views/'.$viewName.'.php';
+        require_once 'views/'.$viewName.'.php';
       }
 
   }

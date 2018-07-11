@@ -1,19 +1,19 @@
 <?php
-  class Image{
+  class Foto{
     private $id;
     private $imagePath;
 
-    public function getId(): int{
+    public function getId(){
       return $this->id;
     }
-    public function setId(int $id){
+    public function setId($id){
       $this->id=$id;
     }
 
-    public function getImagePath():string{
+    public function getImagePath(){
       return $this->imagePath;
     }
-    public function setImagePath(string $imagePath){
+    public function setImagePath($imagePath){
       $this->imagePath=$imagePath;
     }
 

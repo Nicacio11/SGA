@@ -10,7 +10,6 @@
             <li><a href="#" class="waves-effect waves-light change">Pedidos de Oração</a></li>
             <li><a href="#" class="waves-effect waves-light change">Reflexões</a></li>
             <li><a href="#" class="waves-effect waves-light change">Contato</a></li>
-
               <a class='dropdown-trigger waves-effect waves-light menud' href='#' data-target='dropdown1'><i class="material-icons change">menu</i></a>
               <!-- Dropdown Structure -->
               <ul id='dropdown1' class='dropdown-content'>

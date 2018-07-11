@@ -1,7 +1,10 @@
 
 <?php
+
     session_start();
+  //  unset($_SESSION['usuario']);
     require './environment.php';
+    header('Content-Type: text/html; charset=utf-8');
 
     spl_autoload_register(function($class){
 

@@ -2,7 +2,7 @@ M.AutoInit();
 var environment = "development";
 var url;
 if(environment == "development"){
-	url="http://localhost/SGA";
+	url="http://localhost/SGA/";
 }else{
 
 }
@@ -36,12 +36,16 @@ function logar(){
 
 		//previne ação padrão que é enviar o formulario
 		$.ajax({
-			url: url+'/Usuario/login',
+			url: url+'Usuario/login',
 			type:'post',
 			data:{usuario: user, senha: pass},
 			success: function(r){
 				console.log(r);
-				$('.msg').html(r);
+				if(r != 'Usuário e/ou senha incorretos ou inexistentes'){
+					$('body').html(r);
+				}else{
+					$('.msg').html(r);
+				}
 			},
 			error: function(error){
 				$('.msg').html("Usuario ou senha incorretos");
