@@ -1,5 +1,5 @@
 <?php
-  class Foto{
+  class Image{
     private $id;
     private $imagePath;
 

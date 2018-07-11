@@ -4,7 +4,7 @@
     private $id;
     private $titulo;
     private $descricao;
-    private $foto;
+    private $image;
     private $tipo;
 
     public function __construct($id = null, $titulo, $descricao, $foto){
@@ -31,12 +31,12 @@
     public function setTitulo($titulo){
       $this->titulo= $titulo;
     }
-    public function setFoto($foto){
-      $this->foto=$foto;
+    public function setImage($image){
+      $this->image=$image;
 
     }
-    public function getFoto(){
-      return $this->foto;
+    public function getImage(){
+      return $this->image;
     }
     public function setTipo($tipo){
       $this->tipo=$tipo;

@@ -17,7 +17,7 @@
             $senha = addslashes($_POST['senha']);
         }
         $usuarioDAO = new UsuarioDAO();
-        $user = $usuarioDAO->autenticar($usuario, md5($senha));
+        $user = $usuarioDAO->autenticar($usuario, $senha);
         if($user != null){
           $_SESSION['usuario'] = serialize($user);
           echo "Logado com sucesso";

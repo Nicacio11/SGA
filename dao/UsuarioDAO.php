@@ -7,7 +7,7 @@
       $usuario;
       $sql = $this->db->prepare("SELECT idUsuario, login, nome FROM usuario WHERE login=:usuario AND senha=:senha");
       $sql->bindValue(":usuario", $user);
-      $sql->bindValue(":senha", $pass);
+      $sql->bindValue(":senha", md5($pass));
       $sql->execute();
       if($sql->rowCount()){
         $usuario = new Usuario();
@@ -15,14 +15,44 @@
         $usuario->setId($dadosSQL['idUsuario']);
         $usuario->setNome($dadosSQL['nome']);
         $usuario->setUsuario($dadosSQL['login']);
-        $usuario->setFoto($this->getFoto($usuario->getId()));
+        $usuario->setImage($this->getImage($usuario->getId()));
         return $usuario;
       }
       return null;
+    }
+
+    /**
+    *Description - cadastra usuario no banco
+    *@author Vitor
+    *@param usuario {Usuario} - objeto usuario
+    */
+    public function cadatrar($usuario){
+        $sql = $this->db->prepare("INSERT INTO usuario (login, senha, nome, active) VALUES (:login, :senha, :nome, :active)");
+        $sql->bindValue(":login", $usuario->getUsuario());
+        $sql->bindValue(":senha", $usuario->getSenha());
+        $sql->bindValue(":nome", $usuario->getNome());
+        $sql->bindValue(":active", $usuario->getActive());
+        $sql->execute();
+        $lastId = $db->lastInsertId();
+
+        $this->insertImage($lastId, $usuario->getImagePath());
 
     }
 
-    public function getFoto($id){
+    /**
+    * Description - insere image no banco
+    * @author Vitor
+    * @param id - ultimo id de usuario adicionado
+    * @param image - objeto image
+    */
+    public function insertImage($id, $image){
+
+      $sql = $this->db->prepare("INSERT INTO usuario_image (Usuario_idUsuario, imagePath) VALUES (:fk, :imagePath)");
+      $sql->bindValue(":fk", $id);
+      $sql->bindValue(":imagePath", $image->getImagePath());
+      $sql->execute();
+    }
+    public function getImage($id){
       $foto;
 
       $sql = $this->db->prepare("SELECT imagePath FROM usuario_foto WHERE Usuario_idUsuario = :id");

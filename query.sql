@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS usuario(
 );
 
 
-CREATE TABLE IF NOT EXISTS usuario_foto(
-  idUsuario_foto INT(10) PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS usuario_image(
+  idUsuario_image INT(10) PRIMARY KEY AUTO_INCREMENT,
   Usuario_idUsuario INT(10) not null,
   imagePath VARCHAR(50) not null,
   FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS atividade(
     tipo char(1), -- 1 atividades regulares 2 - eventos
     FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
-CREATE TABLE IF NOT EXISTS atividade_foto(
+CREATE TABLE IF NOT EXISTS atividade_image(
   idAtividade_foto INT(10) PRIMARY KEY AUTO_INCREMENT,
   Atividade_idAtividade INT(10) not null,
   imagePath VARCHAR(50) not null,
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS galeria(
     FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
 
-CREATE TABLE IF NOT EXISTS galeria_foto(
+CREATE TABLE IF NOT EXISTS galeria_image(
     idGaleria_Foto INT(10) PRIMARY KEY AUTO_INCREMENT,
     Galera_idGaleria INT(10) not null,
     imagePath VARCHAR(50) not null

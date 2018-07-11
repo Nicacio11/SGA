@@ -13,7 +13,8 @@
     private $usuario;
     private $senha;
     private $nome;
-    private $foto;
+    private $image;
+    private $active;
 
     public function getId(){
       return $this->id;
@@ -28,13 +29,13 @@
       $this->nome=$nome;
     }
     public function setSenha($senha){
-      $this->senha-$senha;
+      $this->senha=md5($senha);
     }
-    public function getFoto(){
-      return $this->foto;
+    public function getImage(){
+      return $this->image;
     }
-    public function setFoto($foto){
-      $this->foto=$foto;
+    public function setImage($image){
+      $this->image=$image;
     }
     public function setUsuario($usuario){
       $this->usuario =  $usuario;
@@ -43,4 +44,12 @@
     public function getUsuario(){
       return $this->usuario;
     }
+    public function setActive($active){
+      $this->active =  $active;
+    }
+
+    public function getUsuario(){
+      return $this->active;
+    }
+
   }

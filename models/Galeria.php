@@ -3,8 +3,8 @@
   class Galeria{
     private $id;
     private $titulo;
-    private $fotos = [];
-  
+    private $images = [];
+
 
   public function getId(){
     return $this->id;
@@ -18,11 +18,10 @@
   public function getTitulo(){
     return $this->titulo;
   }
-  public function getFotos(){
-    return $this->fotos;
+  public function getImages(){
+    return $this->images;
   }
-  public function addFotos($foto){
-     $this->fotos[]=$foto;
+  public function addImage($image){
+     $this->images[]=$image;
   }
 }
-
