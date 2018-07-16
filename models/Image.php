@@ -3,6 +3,8 @@
     private $id;
     private $imagePath;
 
+
+
     public function getId(): int{
       return $this->id;
     }
@@ -10,10 +12,10 @@
       $this->id=$id;
     }
 
-    public function getImagePath():string{
+    public function getImagePath(){
       return $this->imagePath;
     }
-    public function setImagePath(string $imagePath){
+    public function setImagePath($imagePath){
       $this->imagePath=$imagePath;
     }
 

@@ -68,6 +68,27 @@
       }
       return null;
     }
+    public function getUsuarioById($id){
 
+      $usuario;
+      $sql = $this->db->prepare(
+        "SELECT idUsuario, nome, imagePath FROM usuario
+        INNER JOIN usuario_image on usuario.idUsuario=usuario_image.Usuario_idUsuario
+        WHERE idUsuario=:idUsuario"
+      );
+      $sql->bindValue(":idUsuario", $id);
+      $sql->execute();
+      if($sql->rowCount()){
+        $usuario = new Usuario();
+        $dadosSQL = $sql->fetch();
+        $usuario->setNome($dadosSQL['nome']);
+        $image = new Image();
+        $image->setImagePath($dadosSQL['imagePath']);
+        $usuario->setImage($image);
+        return $usuario;
+
+    }
+    return null;
   }
+}
 ?>

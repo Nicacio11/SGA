@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<title>Painel - SGA</title>
-	</head>
   <!--Import Google Icon Font-->
   <link href="<?php echo BASE_URL; ?>/assets/css/icon.css" rel="stylesheet">
 	<!--Roboto-->
@@ -14,20 +13,21 @@
 
   <link type="text/css" rel="stylesheet" href="<?php echo BASE_URL; ?>/assets/css/style.css"/>
   <!--Otimização para mobile-->
+	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
 	<body class="fadeIn">
-		<nav class="white">
+		<nav class="black white-text">
 		  <div class="container">
 		        <div class="nav-wrapper">
 
-		          <a href="" class="brand-logo waves-effect waves-dark change">SGA</a>
-		          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons change">menu</i></a>
+		          <a href="" class="brand-logo waves-effect waves-dark">SGA</a>
+		          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 		          <ul class="right hide-on-med-and-down">
-		            <li>
-									<a href="#" class="waves-effect waves-light change">Ministérios</a></li>
+								<li><a href="<?php BASE_URL?>Reflexao" class="waves-effect waves-light">Reflexões</a></li>
+		            <li><a href="#" class="waves-effect waves-light">Ministérios</a></li>
 		            <li><a href="#" class="waves-effect waves-light change">Atividades</a></li>
 		            <li><a href="#" class="waves-effect waves-light change">Pedidos de Oração</a></li>
-		            <li><a href="#" class="waves-effect waves-light change">Reflexões</a></li>
 		            <li><a href="#" class="waves-effect waves-light change">Contato</a></li>
 		              <a class='dropdown-trigger waves-effect waves-light menud' href='#' data-target='dropdown1'><i class="material-icons change">menu</i></a>
 		              <!-- Dropdown Structure -->
@@ -67,7 +67,6 @@
     <?php
         $this->loadInTemplate($viewName, $viewData);
     ?>
-
     <footer class="page-footer green" >
       <div class="container right-align">
         <a class="btn carousel-background waves-effect waves-light" href="<?php BASE_URL;?>Usuario/sair">

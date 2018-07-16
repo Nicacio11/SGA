@@ -31,10 +31,10 @@
     public function setSenha($senha){
       $this->senha=md5($senha);
     }
-    public function getImage(): Image{
+    public function getImage(){
       return $this->image;
     }
-    public function setImage(Image $image){
+    public function setImage($image){
       $this->image=$image;
     }
     public function setUsuario($usuario){
@@ -52,4 +52,9 @@
       return $this->active;
     }
 
+    public function verificarUsuario(){
+      if($_SESSION['usuario'] == null){
+        header("location: ".BASE_URL."/Usuario");
+      }
+    }
   }

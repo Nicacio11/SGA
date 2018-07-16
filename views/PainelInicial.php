@@ -1,8 +1,8 @@
 <div class="painel fadeIn">
   <div class="container">
     <div class="panel">
-      <div class="painelInterno card-panel carousel-background">
-      <h4 class="center-align"> Olá <?php echo $nome?>,
+      <div class="painelInterno2 card-panel carousel-background">
+      <h4 class="center-align"> Olá <?php echo utf8_encode($nome);?>,
         A Paz!
       </h4>
       <div class="right-align">
