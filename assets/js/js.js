@@ -23,10 +23,13 @@ $(function(){
 			logar();
 		});
 		$('#descricao').on('submit', function(e){
-			e.preventDefault();
+			//e.preventDefault();
 			adicionarReflexao();
 		});
 		$('textarea#descricao').characterCounter();
+		$(document).ready(function(){
+    	$('.modal').modal();
+  	});
 });
 function next(){
 	$('.carousel').carousel('next');
@@ -57,21 +60,19 @@ function logar(){
 		});
 }
 function adicionarReflexao(){
-	var titulo =	$('#titulo').val();
-	var descricao = $('#descricao').val();
-	$.ajax({
-		url: url+'Reflexao/adicionar',
-		type: 'post',
-		data: {titulo: titulo, descricao: descricao},
-		success: function(r){
-			$('#titulo').text(null);
-			$('#descricao').text(null);
+	var titulo =	document.getElementById('titulo').value;
+	var descricao = document.getElementById('descricao').value;
+		if( titulo.trim() != "" && descricao.trim() != ""){
 			alert("Adicionado com sucesso!");
-
-		},
-		error: function(error){
-			alerta('Não foi possivel realizar ação!');
+			return true;
 		}
+	alert("Verifique se todas as informações estão corretas!");
+	return false;
+}
+function excluirReflexao(id){
+	var resposta = confirm("Deseja remover esse registro?");
 
-	});
+	if(resposta == true){
+		window.location.href = url+"reflexao/apagar/"+id
+	}
 }

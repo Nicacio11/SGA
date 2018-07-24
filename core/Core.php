@@ -57,7 +57,7 @@
         $currentAction = 'index';
       }
 
-
+      
       //instanciando o controller
       $controller = new $currentController;
       //verificando se o metodo existe ou nãoptimize
@@ -71,4 +71,3 @@
 
     }
   }
-

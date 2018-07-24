@@ -24,7 +24,7 @@
 		          <a href="" class="brand-logo waves-effect waves-dark">SGA</a>
 		          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 		          <ul class="right hide-on-med-and-down">
-								<li><a href="<?php BASE_URL?>Reflexao" class="waves-effect waves-light">Reflexões</a></li>
+								<li><a href="<?php echo BASE_URL;?>Reflexao" class="waves-effect waves-light">Reflexões</a></li>
 		            <li><a href="#" class="waves-effect waves-light">Ministérios</a></li>
 		            <li><a href="#" class="waves-effect waves-light change">Atividades</a></li>
 		            <li><a href="#" class="waves-effect waves-light change">Pedidos de Oração</a></li>
@@ -57,7 +57,7 @@
 		        <li><a href="#!" class="waves-effect waves-light">Vídeos</a></li>
 		        <li><a href="#!" class="waves-effect waves-light">Testemunhos</a></li>
 		        <li><a href="#" class="waves-effect waves-light">Quem Somos</a></li>
-		        <li><a href="<?php BASE_URL?>Usuario" class="waves-effect waves-light">
+		        <li><a href="<?php echo BASE_URL?>Usuario" class="waves-effect waves-light">
 		          <i class="material-icons" >lock</i>
 		          Área de login</a>
 		        </li>
@@ -69,7 +69,7 @@
     ?>
     <footer class="page-footer green" >
       <div class="container right-align">
-        <a class="btn carousel-background waves-effect waves-light" href="<?php BASE_URL;?>Usuario/sair">
+        <a class="btn carousel-background waves-effect waves-light" href="<?php echo BASE_URL;?>Usuario/sair">
           Sair
         </a>
       </div>

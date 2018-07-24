@@ -215,6 +215,8 @@ iframe{
 }
 .panel{
   padding:20px;
+  padding-top: 100px;
+  padding-bottom: 80px;
 }
 .painel{
   background-image: url('../images/praying4.jpg');
@@ -230,8 +232,8 @@ iframe{
 }
 
 .painelInterno2{
-  padding-top:80px;
-  padding-bottom: 60px;
+  padding-top:150px;
+  padding-bottom: 177px;
   text-align: center;
   min-height: 493px;
 }

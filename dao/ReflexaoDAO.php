@@ -15,9 +15,11 @@ class ReflexaoDAO extends BaseDAO{
     $sql->execute();
   }
 
-  public function getReflexoes(){
+  public function getReflexoes($page, $perPage){
+    $offset = ($page - 1) * $perPage;
+
     $reflexoes = array();
-    $sql= $this->db->prepare("SELECT idReflexao, titulo, data, corpo, Usuario_idUsuario FROM reflexao;");
+    $sql= $this->db->prepare("SELECT idReflexao, titulo, data, corpo, Usuario_idUsuario FROM reflexao LIMIT $offset, $perPage;");
     $sql->execute();
 
     if($sql->rowCount()>0){
@@ -47,5 +49,32 @@ class ReflexaoDAO extends BaseDAO{
       return $reflexao;
     }
     return null;
+  }
+  public function getReflexao($id){
+    $reflexao;
+    $sql = $this->db->prepare("SELECT idReflexao, titulo, data, corpo, Usuario_idUsuario FROM reflexao WHERE idReflexao=:id");
+    $sql->bindValue("id", $id);
+    $sql->execute();
+
+    if($sql->rowCount() > 0){
+      $dado = $sql->fetch();
+      $reflexao = new Reflexao($dado['titulo'], $dado['corpo']);
+      $reflexao->setId($dado['idReflexao']);
+      $reflexao->setData($dado['data']);
+      $reflexao->setIdUsuario($dado['Usuario_idUsuario']);
+      return $reflexao;
+    }
+    return null;
+  }
+  public function apagar($id){
+    $sql = $this->db->prepare("DELETE FROM reflexao WHERE idReflexao=:id");
+    $sql->bindValue("id", $id);
+    $sql->execute();
+  }
+  public function getTotal(){
+    $sql = $this->db->query("SELECT COUNT(*) as c FROM reflexao");
+    $data = $sql->fetch();
+
+    return $data['c'];
   }
 }
