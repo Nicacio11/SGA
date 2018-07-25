@@ -27,9 +27,6 @@ $(function(){
 			adicionarReflexao();
 		});
 		$('textarea#descricao').characterCounter();
-		$(document).ready(function(){
-    	$('.modal').modal();
-  	});
 });
 function next(){
 	$('.carousel').carousel('next');
@@ -60,8 +57,8 @@ function logar(){
 		});
 }
 function adicionarReflexao(){
-	var titulo =	document.getElementById('titulo').value;
-	var descricao = document.getElementById('descricao').value;
+	var titulo =	document.getElementById('tituloadd').value;
+	var descricao = document.getElementById('descricaoadd').value;
 		if( titulo.trim() != "" && descricao.trim() != ""){
 			alert("Adicionado com sucesso!");
 			return true;

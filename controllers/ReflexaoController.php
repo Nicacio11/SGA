@@ -26,12 +26,13 @@ class ReflexaoController extends Controller{
    $dado['reflexoes'] = $reflexoes;
    $dado['total_reflexoes'] = $total_paginas;
    $dado['total_paginas'] = $total_paginas;
+   $dado['p']=$p;
     $this->loadTemplate('reflexao/ReflexaoPainel', $dado);
   }
   public function adicionar(){
-    if(isset($_POST['titulo']) && !empty(trim($_POST['titulo']))){
-      $titulo = addslashes($_POST['titulo']);
-      $descricao = addslashes($_POST['descricao']);
+    if(isset($_POST['tituloadd']) && !empty(trim($_POST['tituloadd']))){
+      $titulo = addslashes($_POST['tituloadd']);
+      $descricao = addslashes($_POST['descricaoadd']);
       $reflexao = new Reflexao($titulo, $descricao);
       $reflexaoDAO = new ReflexaoDAO();
       $reflexaoDAO->adicionar($reflexao);

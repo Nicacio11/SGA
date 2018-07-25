@@ -25,7 +25,7 @@
         </table>
         <ul class="pagination">
             <?php for($q=1;$q<=$total_paginas;$q++): ?>
-    				<li class="<?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>Reflexao/index.php?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
+    				<li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>Reflexao/index.php?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
     				<?php endfor; ?>
           </ul>
         <a class="btn green" href="<?php echo BASE_URL;?>Reflexao/adicionar">Adicionar Reflexao</a>

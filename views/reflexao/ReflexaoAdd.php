@@ -8,12 +8,12 @@
             <div class="row">
               <div class="input-field col offset-m2 m8 offset-m2">
                 <i class="material-icons prefix">mode_edit</i>
-                <input required id="titulo" name="titulo" type="text" autocomplete="off" class="novalidate text-white">
+                <input required id="tituloadd" name="tituloadd" type="text" autocomplete="off" class="novalidate text-white">
                 <label for="titulo">Titulo</label>
               </div>
               <div class="input-field col offset-m2 m8 offset-m2">
                 <i class="material-icons prefix">mode_edit</i>
-                <textarea autocomplete="off" required id="descricao" name="descricao" class="materialize-textarea text-white" data-length="400"></textarea>
+                <textarea autocomplete="off" required id="descricaoadd" name="descricaoadd" class="materialize-textarea text-white" data-length="400"></textarea>
                 <label for="descricao">Descricão</label>
               </div>
             </div>
