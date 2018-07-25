@@ -30,7 +30,10 @@ class ReflexaoController extends Controller{
     $this->loadTemplate('reflexao/ReflexaoPainel', $dado);
   }
   public function adicionar(){
-    if(isset($_POST['tituloadd']) && !empty(trim($_POST['tituloadd']))){
+    if(
+      (isset($_POST['tituloadd']) && !empty(trim($_POST['tituloadd']))) &&
+      (isset($_POST['descricaoadd']) && !empty(trim($_POST['descricaoadd'])))
+    ){
       $titulo = addslashes($_POST['tituloadd']);
       $descricao = addslashes($_POST['descricaoadd']);
       $reflexao = new Reflexao($titulo, $descricao);
@@ -44,8 +47,25 @@ class ReflexaoController extends Controller{
   }
   public function editar($id){
     $reflexaoDAO = new ReflexaoDAO();
-
     $reflexao = $reflexaoDAO->getReflexao($id);
+    if($reflexao == null){
+      header("Location: ".BASE_URL.'reflexao');
+      exit;
+    }
+    if(isset($_POST['tituloedit']) && !empty(trim($_POST['tituloedit']))
+    && isset($_POST['descricaoedit']) && !empty(trim($_POST['descricaoedit']))
+  ){
+
+      $titulo = addslashes($_POST['tituloedit']);
+      $descricao = addslashes($_POST['descricaoedit']);
+      $reflexao = new Reflexao($titulo, $descricao);
+      $reflexao->setId($id);
+      $reflexaoDAO->atualizar($reflexao);
+      header("Location: ".BASE_URL.'reflexao');
+      exit;
+    }
+
+
 
     $array['reflexao'] = $reflexao;
     $this->loadTemplate("reflexao/ReflexaoEdit", $array);

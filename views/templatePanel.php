@@ -21,7 +21,7 @@
 		  <div class="container">
 		        <div class="nav-wrapper">
 
-		          <a href="" class="brand-logo waves-effect waves-dark">SGA</a>
+		          <a href="<?php echo BASE_URL; ?>Usuario" class="brand-logo waves-effect waves-dark">SGA</a>
 		          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 		          <ul class="right hide-on-med-and-down">
 								<li><a href="<?php echo BASE_URL;?>Reflexao" class="waves-effect waves-light">Reflexões</a></li>

@@ -26,7 +26,15 @@ $(function(){
 			//e.preventDefault();
 			adicionarReflexao();
 		});
-		$('textarea#descricao').characterCounter();
+		$('#atualizarDescricao').on('submit', function(e){
+			//e.preventDefault();
+			atualizarReflexao();
+		});
+		$('textarea#descricaoadd').characterCounter();
+		$('textarea#testemunhodescricaoadd').characterCounter();
+		$('textarea#testemunhodescricaoedit').characterCounter();
+		$('textarea#descricaoedit').characterCounter();
+
 });
 function next(){
 	$('.carousel').carousel('next');
@@ -66,10 +74,49 @@ function adicionarReflexao(){
 	alert("Verifique se todas as informações estão corretas!");
 	return false;
 }
+function atualizarReflexao(){
+	var titulo =	document.getElementById('tituloedit').value;
+	var descricao = document.getElementById('descricaoedit').value;
+		if( titulo.trim() != "" && descricao.trim() != ""){
+			alert("Atualizado com sucesso!");
+			return true;
+		}
+	alert("Verifique se todas as informações estão corretas!");
+	return false;
+}
 function excluirReflexao(id){
 	var resposta = confirm("Deseja remover esse registro?");
 
 	if(resposta == true){
 		window.location.href = url+"reflexao/apagar/"+id
+	}
+}
+function adicionarTestemunho(){
+	var nome =	document.getElementById('nometemunhoadd').value;
+	var descricao = document.getElementById('testemunhodescricaoadd').value;
+	var email = document.getElementById('emailtestemunhoadd').value;
+		if( nome.trim() != "" && descricao.trim() != "" && email.trim() !=""){
+			alert("Adicionado com sucesso!");
+			return true;
+		}
+	alert("Verifique se todas as informações estão corretas!");
+	return false;
+}
+function atualizarTestemunho(){
+	var nome =	document.getElementById('nometemunhoedit').value;
+	var descricao = document.getElementById('testemunhodescricaoedit').value;
+	var email = document.getElementById('emailtestemunhoedit').value;
+		if( nome.trim() != "" && descricao.trim() != "" && email.trim() !=""){
+			alert("Atualizado com sucesso!");
+			return true;
+		}
+	alert("Verifique se todas as informações estão corretas!");
+	return false;
+}
+function excluirTestemunho(id){
+	var resposta = confirm("Deseja remover esse registro?");
+
+	if(resposta == true){
+		window.location.href = url+"testemunho/apagar/"+id
 	}
 }

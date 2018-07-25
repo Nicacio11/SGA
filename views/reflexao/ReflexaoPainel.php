@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <?php if( !empty($reflexoes != null) ): ?>
-        <table class="centered striped">
+        <table class="centered highlight">
           <thead>
              <tr>
                  <th>Titulo</th>
@@ -27,7 +27,7 @@
             <?php for($q=1;$q<=$total_paginas;$q++): ?>
     				<li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>Reflexao/index.php?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
     				<?php endfor; ?>
-          </ul>
+        </ul>
         <a class="btn green" href="<?php echo BASE_URL;?>Reflexao/adicionar">Adicionar Reflexao</a>
       <?php else: ?>
           <p> Nenhuma reflexão adicionada</p>

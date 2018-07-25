@@ -4,16 +4,14 @@
       <div class="col s12 offset-2 m8 offset-m2 card-panel green accent-2">
         <h5>Editar Reflexão</h5>
         <div class="formAlign">
-          <form id="descricao" method="post">
+          <form id="atualizarDescricao" method="post">
             <div class="row">
               <div class="input-field col offset-m2 m8 offset-m2">
-                <i class="material-icons prefix">mode_edit</i>
-                <input required id="titulo" name="titulo" type="text" autocomplete="off" value="<?php echo utf8_encode($reflexao->getTitulo());?>" class="novalidate text-white">
-                <label for="titulo">Titulo</label>
+                <input required id="tituloedit" name="tituloedit" type="text" autocomplete="off" value="<?php echo utf8_encode($reflexao->getTitulo());?>" class="novalidate text-white">
+                <label for="tituloedit">Titulo</label>
               </div>
               <div class="input-field col offset-m2 m8 offset-m2">
-                <i class="material-icons prefix">mode_edit</i>
-                <textarea autocomplete="off" required id="descricao" name="descricao" class="materialize-textarea text-white" data-length="2000"><?php echo utf8_encode($reflexao->getCorpo());?>
+                <textarea autocomplete="off" required id="descricaoedit" name="descricaoedit" class="materialize-textarea text-white" data-length="2000"><?php echo utf8_encode($reflexao->getCorpo());?>
                 </textarea>
                 <label for="descricao">Descricão</label>
               </div>

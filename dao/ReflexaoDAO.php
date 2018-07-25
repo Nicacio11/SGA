@@ -71,6 +71,13 @@ class ReflexaoDAO extends BaseDAO{
     $sql->bindValue("id", $id);
     $sql->execute();
   }
+  public function atualizar($reflexao){
+    $sql = $this->db->prepare("UPDATE reflexao SET titulo=:titulo, corpo=:corpo WHERE idReflexao = :idReflexao");
+    $sql->bindValue(":titulo", $reflexao->getTitulo());
+    $sql->bindValue(":corpo", $reflexao->getCorpo());
+    $sql->bindValue(":idReflexao", $reflexao->getId());
+    $sql->execute();
+  }
   public function getTotal(){
     $sql = $this->db->query("SELECT COUNT(*) as c FROM reflexao");
     $data = $sql->fetch();
