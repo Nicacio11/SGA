@@ -4,10 +4,10 @@ USE sga;
 
 CREATE TABLE IF NOT EXISTS usuario(
   idUsuario INT(10) AUTO_INCREMENT PRIMARY KEY,
-  login VARCHAR(10) not null,
+  login VARCHAR(10) not null UNIQUE,
   senha VARCHAR(32) not null,
   nome VARCHAR(50) not null,
-  active VARCHAR(1) not null-- 0 desativo 1 - normal  2 - admin
+  active ENUM('0', '1', '2')-- 0 desativo 1 - normal  2 - admin
 );
 
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS video(
 CREATE TABLE IF NOT EXISTS quemsomos(
     idQuemSomos INT(10) PRIMARY KEY AUTO_INCREMENT,
     Usuario_idUsuario INT(10) not null,
-    titulo VARCHAR(25) not null,
+    titulo VARCHAR(25) not null UNIQUE,
     descricao VARCHAR(150) not null,
     FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
@@ -63,8 +63,6 @@ CREATE TABLE IF NOT EXISTS pedido(
     Usuario_idUsuario INT(10) not null,
     email VARCHAR(50) not null,
     descricao VARCHAR(150) not null,
-    nomePessoa VARCHAR(30) not null,
-    emailPessoa VARCHAR(50) not null,
     FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
 CREATE TABLE IF NOT EXISTS pedido_pessoa(
@@ -88,7 +86,7 @@ CREATE TABLE IF NOT EXISTS atividade(
     Usuario_idUsuario INT(10) not null,
     titulo VARCHAR(105) not null,
     descricao VARCHAR(350) not null,
-    tipo char(1), -- 1 atividades regulares 2 - eventos
+    tipo ENUM('1', '2') -- 1 atividades regulares 2 - eventos
     FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
 CREATE TABLE IF NOT EXISTS atividade_image(

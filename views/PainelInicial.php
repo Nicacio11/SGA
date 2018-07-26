@@ -6,7 +6,7 @@
         A Paz!
       </h4>
       <div class="right-align">
-        <img class="right-align resposnive-img pessoa thumbnail" src=<?php BASE_URL;?><?php echo $imagem;?> </img>
+        <img class="right-align resposnive-img pessoa img-thumbnail" src=<?php BASE_URL;?><?php echo $imagem;?> </img>
       </div>
       <p class="right-align"> Antes de postar ou fazer alguma alteração faça essa oração
         <i class="material-icons">arrow_downward</i>
