@@ -1,10 +1,10 @@
 M.AutoInit();
-var environment = "development";
+var environment = "production";
 var url;
 if(environment == "development"){
 	url="http://localhost/SGA/";
 }else{
-
+	url="http://www.vitornicacio.com.br/projetos/SGA//";
 }
 $(function(){
 
