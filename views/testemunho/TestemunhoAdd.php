@@ -4,11 +4,11 @@
       <div class="col s12 offset-2 m8 offset-m2 card-panel green accent-2">
         <h5>Adicionar Testemunho</h5>
         <div class="formAlign">
-          <form id="testemunho" method="post">
+          <form id="testemunhoadd" method="post">
             <div class="row">
               <div class="input-field col offset-m2 m8 offset-m2">
 
-                <input required id="nometemunhoadd" name="nometestemunhoadd" type="text" autocomplete="off" autocomplete="off" class="novalidate text-white">
+                <input required id="nometestemunhoadd" name="nometestemunhoadd" type="text" autocomplete="off" autocomplete="off" class="novalidate text-white">
                 <label for="Nome">Nome</label>
               </div>
 

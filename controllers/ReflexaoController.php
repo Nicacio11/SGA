@@ -6,7 +6,6 @@ class ReflexaoController extends Controller{
   public function ReflexaoController(){
     $usuario = new Usuario();
     $usuario->verificarUsuario();
-
   }
   public function index(){
 

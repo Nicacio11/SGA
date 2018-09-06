@@ -1,10 +1,10 @@
 <?php
   class Testemunho{
     private $id;
-    private $emailPessoa;
-    private $nomePessoa;
-    private $testemunho;
-    private $data;
+    private $email;
+    private $nome;
+    private $descricao;
+    private $usuario;
 
 
 
@@ -15,32 +15,31 @@
       $this->id=$id;
     }
 
-    public function setEmailPessoa($emailPessoa){
-      $this->emailPessoa=$emailPessoa;
+    public function setEmail($email){
+      $this->email=$email;
     }
 
-    public function getEmailPessoa(){
+    public function getEmail(){
       return $this->email;
     }
-    public function setNomePessoa($nomePessoa){
-      $this->nomePessoa = $nomePessoa;
+    public function setNome($nome){
+      $this->nome = $nome;
     }
-    public function getNomePessoa(){
-      return $this->nomePessoa;
-    }
-
-    public function setTestemunho($testemunho){
-      $this->testemunho = $testemunho;
-    }
-    public function getTestemunho(){
-      $this->testemunho;
+    public function getNome(){
+      return $this->nome;
     }
 
-    public function getData(){
-      return $this->data;
+    public function setDescricao($descricao){
+      $this->descricao = $descricao;
     }
-    public function setData($data){
-      $this->data=$data;
+    public function getDescricao(){
+      return $this->descricao;
     }
+    public function getUsuario(){
+      return $this->usuario;
+    }
+    public function setUsuario($usuario){
+      $this->usuario=$usuario;
+    }
+
   }
-

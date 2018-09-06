@@ -7,14 +7,17 @@
              <tr>
                  <th>Nome</th>
                  <th>Email</th>
+                 <th>Adicionado por</th>
                  <th>Ação</th>
              </tr>
            </thead>
           <tbody>
               <?php foreach($testemunhos as $testemunho): ?>
               <tr>
+                <td><?php echo $testemunho->getNome(); ?></td>
                 <td><?php echo $testemunho->getEmail(); ?></td>
-                <td><?php echo $testemunho->getData(); ?></td>
+                <td><?php echo $testemunho->getUsuario()->getNome(); ?></td>
+
                 <td>
                   <a href="<?php echo BASE_URL;?>testemunho/editar/<?php echo $testemunho->getId();?>" class="btn blue waves-effect waves-light">Alterar</a>
                   |

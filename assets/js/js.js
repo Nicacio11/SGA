@@ -1,10 +1,10 @@
 M.AutoInit();
-var environment = "production";
+var environment = "development";
 var url;
 if(environment == "development"){
 	url="http://localhost/SGA/";
 }else{
-	url="http://www.vitornicacio.com.br/projetos/SGA//";
+	url="http://www.vitornicacio.com.br/projetos/SGA/";
 }
 $(function(){
 
@@ -30,6 +30,23 @@ $(function(){
 			//e.preventDefault();
 			atualizarReflexao();
 		});
+		$('#testemunhoadd').on('submit', function(e){
+			//e.preventDefault();
+			adicionarTestemunho();
+		});
+		$('#testemunhoedit').on('submit', function(e){
+			//e.preventDefault();
+			atualizarTestemunho();
+		});
+		$('#usuarioadd').on('submit', function(e){
+			//e.preventDefault();
+			addUsuario();
+		});
+		$('#usuarioedit').on('submit', function(e){
+			//e.preventDefault();
+			editUsuario();
+		});
+
 		$('textarea#descricaoadd').characterCounter();
 		$('textarea#testemunhodescricaoadd').characterCounter();
 		$('textarea#testemunhodescricaoedit').characterCounter();
@@ -92,7 +109,7 @@ function excluirReflexao(id){
 	}
 }
 function adicionarTestemunho(){
-	var nome =	document.getElementById('nometemunhoadd').value;
+	var nome =	document.getElementById('nometestemunhoadd').value;
 	var descricao = document.getElementById('testemunhodescricaoadd').value;
 	var email = document.getElementById('emailtestemunhoadd').value;
 		if( nome.trim() != "" && descricao.trim() != "" && email.trim() !=""){
@@ -103,7 +120,7 @@ function adicionarTestemunho(){
 	return false;
 }
 function atualizarTestemunho(){
-	var nome =	document.getElementById('nometemunhoedit').value;
+	var nome =	document.getElementById('nometestemunhoedit').value;
 	var descricao = document.getElementById('testemunhodescricaoedit').value;
 	var email = document.getElementById('emailtestemunhoedit').value;
 		if( nome.trim() != "" && descricao.trim() != "" && email.trim() !=""){
@@ -118,5 +135,95 @@ function excluirTestemunho(id){
 
 	if(resposta == true){
 		window.location.href = url+"testemunho/apagar/"+id
+	}
+}
+
+// Usuario
+
+function validaimagem() {
+  var extensoesOk = ",.jpg,.jpeg,.png,";
+  var extensao	= "," + document.getElementById('imagemUsuario').value.substr( document.getElementById('imagemUsuario').value.length - 4 ).toLowerCase() + ",";
+  if (document.getElementById('imagemUsuario') == "")
+   {
+     alert("O campo do endereço da imagem está vazio!!")
+   }
+  else if( extensoesOk.indexOf( extensao ) == -1 )
+   {
+     alert( document.getElementById('imagemUsuario').value + "\nNão possui uma extensão válida" );
+     location.reload()
+   }
+  else {
+    tamanhos()
+  }
+}
+function tamanhos() {
+  var imagem=new Image();
+  imagem.src=document.getElementById('imagemUsuario').value;
+
+  tamanho_imagem = imagem.fileSize
+  img_tan = tamanho_imagem
+  if (tamanho_imagem < 0)
+   {tamanhos()}
+  else if (tamanho_imagem > 150000)
+  {
+    alert("O tamanho da Imagem é muito grande ...  "+tamanho_imagem+" Bytes!!")
+  }
+}
+function addUsuario(){
+  var login = document.getElementById('loginadd').value
+  var nome = document.getElementById('nomeadd').value
+
+  if(login.trim() != '' && nome.trim() != ''){
+    alert("Adicionado com sucesso!")
+    return true
+  }
+  alert("Preencha todos os campos antes de adicionar!")
+  return false
+}
+function editUsuario(){
+  var login = document.getElementById('loginedit').value
+  var nome = document.getElementById('nomeedit').value
+
+  if(login.trim() != '' && nome.trim() != ''){
+    alert("Adicionado com sucesso!")
+    return true
+  }
+  alert("Preencha todos os campos antes de adicionar!")
+  return false
+}
+function validaimagemEdit() {
+  var extensoesOk = ",.jpg,.jpeg,.png,";
+  var extensao	= "," + document.getElementById('imagemUsuarioEdit').value.substr( document.getElementById('imagemUsuario').value.length - 4 ).toLowerCase() + ",";
+  if (document.getElementById('imagemUsuarioEdit') == "")
+   {
+     alert("O campo do endereço da imagem está vazio!!")
+   }
+  else if( extensoesOk.indexOf( extensao ) == -1 )
+   {
+     alert( document.getElementById('imagemUsuario').value + "\nNão possui uma extensão válida" );
+     location.reload()
+   }
+  else {
+    tamanhosEdit()
+  }
+}
+function tamanhosEdit() {
+  var imagem=new Image();
+  imagem.src=document.getElementById('imagemUsuarioEdt').value;
+
+  tamanho_imagem = imagem.fileSize
+  img_tan = tamanho_imagem
+  if (tamanho_imagem < 0)
+   {tamanhosEdit()}
+  else if (tamanho_imagem > 150000)
+  {
+    alert("O tamanho da Imagem é muito grande ...  "+tamanho_imagem+" Bytes!!")
+  }
+}
+function desativarUsuario(id){
+	var resposta = confirm("Deseja desativar esse registro?");
+
+	if(resposta == true){
+		window.location.href = url+"usuario/desativar/"+id
 	}
 }

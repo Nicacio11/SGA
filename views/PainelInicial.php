@@ -2,11 +2,11 @@
   <div class="container">
     <div class="panel">
       <div class="painelInterno2 card-panel carousel-background">
-      <h4 class="center-align"> Olá <?php echo utf8_encode($nome);?>,
+      <h4 class="center-align"> Olá <?php echo $nome;?>,
         A Paz!
       </h4>
       <div class="right-align">
-        <img class="right-align resposnive-img pessoa img-thumbnail" src=<?php BASE_URL;?><?php echo $imagem;?> </img>
+        <img class="right-align resposnive-img pessoa img-thumbnail" src=<?php echo BASE_URL;?>assets/images/usuarios/<?php echo $imagem;?> </img>
       </div>
       <p class="right-align"> Antes de postar ou fazer alguma alteração faça essa oração
         <i class="material-icons">arrow_downward</i>

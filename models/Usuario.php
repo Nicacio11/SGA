@@ -29,7 +29,10 @@
       $this->nome=$nome;
     }
     public function setSenha($senha){
-      $this->senha=md5($senha);
+      $this->senha=$senha;
+    }
+    public function getSenha(){
+      return $this->senha;
     }
     public function getImage(){
       return $this->image;
@@ -53,8 +56,13 @@
     }
 
     public function verificarUsuario(){
-      if($_SESSION['usuario'] == null){
-        header("location: ".BASE_URL."/Usuario");
+      if($_SESSION['usuario'] == null || unserialize($_SESSION['usuario'])->getActive() == 1){
+        header("location: ".BASE_URL."Usuario");
+      }
+    }
+    public function verificarUsuarioAdmin(){
+      if(unserialize($_SESSION['usuario'])->getActive() < 2){
+        header("location: ".BASE_URL."Usuario");
       }
     }
   }

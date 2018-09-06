@@ -5,7 +5,7 @@
     public function autenticar($user, $pass){
 
       $usuario;
-      $sql = $this->db->prepare("SELECT idUsuario, login, nome FROM usuario WHERE login=:usuario AND senha=:senha");
+      $sql = $this->db->prepare("SELECT idUsuario, login, nome, active FROM usuario WHERE login=:usuario AND senha=:senha");
       $sql->bindValue(":usuario", $user);
       $sql->bindValue(":senha", md5($pass));
       $sql->execute();
@@ -15,6 +15,7 @@
         $usuario->setId($dadosSQL['idUsuario']);
         $usuario->setNome($dadosSQL['nome']);
         $usuario->setUsuario($dadosSQL['login']);
+        $usuario->setActive($dadosSQL['active']);
         $usuario->setImage($this->getImage($usuario->getId()));
         return $usuario;
       }
@@ -26,16 +27,16 @@
     *@author Vitor
     *@param usuario {Usuario} - objeto usuario
     */
-    public function cadatrar($usuario){
+    public function cadastrar($usuario){
         $sql = $this->db->prepare("INSERT INTO usuario (login, senha, nome, active) VALUES (:login, :senha, :nome, :active)");
         $sql->bindValue(":login", $usuario->getUsuario());
         $sql->bindValue(":senha", $usuario->getSenha());
         $sql->bindValue(":nome", $usuario->getNome());
         $sql->bindValue(":active", $usuario->getActive());
         $sql->execute();
-        $lastId = $db->lastInsertId();
+        $lastId = $this->db->lastInsertId();
 
-        $this->insertImage($lastId, $usuario->getImagePath());
+        $this->insertImage($lastId, $usuario->getImage());
 
     }
 
@@ -46,13 +47,26 @@
     * @param image {Image} - objeto image
     */
     public function insertImage($id, $image){
+      $nomedoarquivo = md5(time().rand(0, 99));
+      $im = $image->getImagePath();
+
+      if($im['type']=='image/jpg'){
+        $nomedoarquivo = '.jpg';
+      }else if($im['type']== 'jpeg'){
+        $nomedoarquivo = $nomedoarquivo.'.jpeg';
+      }else{
+        $nomedoarquivo = $nomedoarquivo.'.png';
+      }
 
       $sql = $this->db->prepare("INSERT INTO usuario_image (Usuario_idUsuario, imagePath) VALUES (:fk, :imagePath)");
       $sql->bindValue(":fk", $id);
-      $sql->bindValue(":imagePath", $image->getImagePath());
+      $sql->bindValue(":imagePath", $nomedoarquivo);
       $sql->execute();
+
+      move_uploaded_file($im['tmp_name'], "assets/images/usuarios/".$nomedoarquivo);
+
     }
-    public function getImage($id):Image{
+    public function getImage($id){
       $foto;
 
       $sql = $this->db->prepare("SELECT idUsuario_image ,imagePath FROM usuario_image WHERE Usuario_idUsuario = :id");
@@ -72,7 +86,7 @@
 
       $usuario;
       $sql = $this->db->prepare(
-        "SELECT idUsuario, nome, imagePath FROM usuario
+        "SELECT idUsuario, login, nome, imagePath, active FROM usuario
         INNER JOIN usuario_image on usuario.idUsuario=usuario_image.Usuario_idUsuario
         WHERE idUsuario=:idUsuario"
       );
@@ -81,7 +95,9 @@
       if($sql->rowCount()){
         $usuario = new Usuario();
         $dadosSQL = $sql->fetch();
+        $usuario->setUsuario($dadosSQL['login']);
         $usuario->setNome($dadosSQL['nome']);
+        $usuario->setActive($dadosSQL['active']);
         $image = new Image();
         $image->setImagePath($dadosSQL['imagePath']);
         $usuario->setImage($image);
@@ -89,6 +105,72 @@
 
     }
     return null;
+  }
+  public function atualizar($usuario){
+    print_r($usuario);
+    $nomedoarquivo = md5(time().rand(0, 99));
+    $path = $nomedoarquivo;
+    $im = $usuario->getImage()->getImagePath();
+    if($im['type']=='image/jpg'){
+      $nomedoarquivo = '.jpg';
+    }else if($im['type']== 'jpeg'){
+      $nomedoarquivo = $nomedoarquivo.'.jpeg';
+    }else{
+      $nomedoarquivo = $nomedoarquivo.'.png';
+    }
+    $sql = $this->db->prepare(
+      "UPDATE usuario
+       SET usuario.login=:usuario,
+       usuario.senha=:senha,
+       usuario.nome=:nome,
+       usuario.active=:active
+       WHERE usuario.idUsuario=:idUsuario;"
+    );
+    $sql->bindValue(":usuario", $usuario->getUsuario());
+    $sql->bindValue(":senha", $usuario->getSenha());
+    $sql->bindValue(":nome", $usuario->getNome());
+    $sql->bindValue(":active", $usuario->getActive());
+    $sql->bindValue(":idUsuario", $usuario->getId());
+    $sql->execute();
+    $sqlImage = $this->db->prepare(
+      "UPDATE usuario_image
+       SET imagePath=:imagePath
+       WHERE Usuario_idUsuario=:idUsuario;"
+     );
+    $sqlImage->bindValue(":imagePath", $path);
+    $sqlImage->bindValue(":idUsuario", $usuario->getId());
+    $sqlImage->execute();
+
+    move_uploaded_file($im['tmp_name'], "assets/images/usuarios/".$nomedoarquivo);
+  }
+  public function getAll($page, $perPage){
+    $offset = ($page - 1) * $perPage;
+    $array = array();
+    $sql = $this->db->query(
+      "SELECT idUsuario, login, nome, active FROM usuario LIMIT $offset, $perPage;"
+    );
+    if($sql->rowCount()>0){
+      foreach($sql->fetchAll() as $usuario){
+        $user = new Usuario();
+        $user->setId($usuario['idUsuario']);
+        $user->setUsuario($usuario['login']);
+        $user->setNome($usuario['nome']);
+        $user->setActive($usuario['active']);
+        $array[] = $user;
+      }
+      return $array;
+    }
+  }
+  public function getTotal(){
+    $sql = $this->db->query("SELECT COUNT(*) as c FROM usuario");
+    $data = $sql->fetch();
+
+    return $data['c'];
+  }
+  public function desativar($id){
+    $sql = $this->db->prepare("UPDATE usuario SET active=0 WHERE idUsuario=:id");
+    $sql->bindValue("id", $id);
+    $sql->execute();
   }
 }
 ?>

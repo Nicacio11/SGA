@@ -4,22 +4,22 @@
       <div class="col s12 offset-2 m8 offset-m2 card-panel green accent-2">
         <h5>Atualizar Testemunho</h5>
         <div class="formAlign">
-          <form id="testemunho" method="post">
+          <form id="testemunhoedit" method="post">
             <div class="row">
               <div class="input-field col offset-m2 m8 offset-m2">
 
-                <input required id="nometemunhoadd" name="nometestemunhoadd" type="text" autocomplete="off" autocomplete="off" class="novalidate text-white">
+                <input required id="nometestemunhoedit" name="nometestemunhoedit" type="text" autocomplete="off" value="<?php echo $testemunho->getNome();?>" autocomplete="off" class="novalidate text-white">
                 <label for="Nome">Nome</label>
               </div>
 
               <div class="input-field col offset-m2 m8 offset-m2">
 
-                <input required id="emailtestemunhoadd" name="emailtestemunhoadd" type="text" autocomplete="off" class="novalidate text-white">
+                <input required id="emailtestemunhoedit" name="emailtestemunhoedit" type="text" autocomplete="off" value="<?php echo $testemunho->getEmail();?>" class="novalidate text-white">
                 <label for="Email">Email</label>
               </div>
               <div class="input-field col offset-m2 m8 offset-m2">
 
-                <textarea autocomplete="off" required id="testemunhodescricaoadd" name="testemunhodescricaoadd" class="materialize-textarea text-white" data-length="2000"></textarea>
+                <textarea autocomplete="off" required id="testemunhodescricaoedit" name="testemunhodescricaoedit"  class="materialize-textarea text-white" data-length="2000"><?php echo $testemunho->getDescricao();?></textarea>
                 <label for="descricao">Descricão</label>
               </div>
             </div>

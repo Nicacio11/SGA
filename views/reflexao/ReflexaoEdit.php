@@ -7,11 +7,11 @@
           <form id="atualizarDescricao" method="post">
             <div class="row">
               <div class="input-field col offset-m2 m8 offset-m2">
-                <input required id="tituloedit" name="tituloedit" type="text" autocomplete="off" value="<?php echo utf8_encode($reflexao->getTitulo());?>" class="novalidate text-white">
+                <input required id="tituloedit" name="tituloedit" type="text" autocomplete="off" value="<?php echo $reflexao->getTitulo();?>" class="novalidate text-white">
                 <label for="tituloedit">Titulo</label>
               </div>
               <div class="input-field col offset-m2 m8 offset-m2">
-                <textarea autocomplete="off" required id="descricaoedit" name="descricaoedit" class="materialize-textarea text-white" data-length="2000"><?php echo utf8_encode($reflexao->getCorpo());?>
+                <textarea autocomplete="off" required id="descricaoedit" name="descricaoedit" class="materialize-textarea text-white" data-length="2000"><?php echo $reflexao->getCorpo();?>
                 </textarea>
                 <label for="descricao">Descricão</label>
               </div>
