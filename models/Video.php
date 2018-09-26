@@ -4,6 +4,7 @@
     private $titulo;
     private $descricao;
     private $videoPath;
+    private $usuario;
 
     public function getId(){
       return $this->id;
@@ -28,5 +29,17 @@
     }
     public function setVideoPath($videoPath){
       $this->videoPath=$videoPath;
+    }
+    
+
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
     }
   }

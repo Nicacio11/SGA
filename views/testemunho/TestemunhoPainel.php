@@ -19,7 +19,7 @@
                 <td><?php echo $testemunho->getUsuario()->getNome(); ?></td>
 
                 <td>
-                  <a href="<?php echo BASE_URL;?>testemunho/editar/<?php echo $testemunho->getId();?>" class="btn blue waves-effect waves-light">Alterar</a>
+                  <a href="<?php echo BASE_URL;?>testemunho/alterar/<?php echo $testemunho->getId();?>" class="btn blue waves-effect waves-light">Alterar</a>
                   |
                   <a href="javascript: excluirtestemunho(<?php echo $testemunho->getId();?>);" class="btn red waves-effect waves-light">Apagar</a></td>
               </tr>
@@ -27,9 +27,14 @@
           </tbody>
         </table>
         <ul class="pagination">
-            <?php for($q=1;$q<=$total_paginas;$q++): ?>
-    				<li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>testemunho/index.php?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
-    				<?php endfor; ?>
+        <?php 
+            if($total_paginas!=1):
+              for($q=1;$q<=$total_paginas;$q++): ?>
+    				    <li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>usuario/painel/?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
+            <?php   
+              endfor;
+              endif; 
+            ?>
         </ul>
         <a class="btn green" href="<?php echo BASE_URL;?>testemunho/adicionar">Adicionar Testemunho!</a>
       <?php else: ?>

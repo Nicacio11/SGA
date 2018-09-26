@@ -24,10 +24,10 @@
 		          <a href="<?php echo BASE_URL; ?>Usuario" class="brand-logo waves-effect waves-dark">SGA</a>
 		          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 		          <ul class="right hide-on-med-and-down">
-								<li><a href="<?php echo BASE_URL;?>Reflexao" class="waves-effect waves-light">Reflexões</a></li>
-		            <li><a href="#" class="waves-effect waves-light">Ministérios</a></li>
+								<li><a href="<?php echo BASE_URL;?>Reflexao/painel" class="waves-effect waves-light">Reflexões</a></li>
+								<li><a href="<?php echo BASE_URL;?>Testemunho/painel" class="waves-effect waves-light">Testemunhos</a></li>
+
 		            <li><a href="#" class="waves-effect waves-light change">Atividades</a></li>
-		            <li><a href="#" class="waves-effect waves-light change">Pedidos de Oração</a></li>
 		            <li><a href="#" class="waves-effect waves-light change">Contato</a></li>
 		              <a class='dropdown-trigger waves-effect waves-light menud' href='#' data-target='dropdown1'><i class="material-icons change">menu</i></a>
 		              <!-- Dropdown Structure -->
@@ -48,6 +48,9 @@
 		        </div>
 
 		      <ul class="sidenav" id="mobile-demo">
+						<li><a href="<?php echo BASE_URL;?>Reflexao/painel" class="waves-effect waves-light">Reflexões</a></li>
+						<li><a href="<?php echo BASE_URL;?>Testemunho/painel" class="waves-effect waves-light">Testemunhos</a></li>
+
 		        <li><a href="#" class="waves-effect waves-light">Ministérios</a></li>
 		        <li><a href="#" class="waves-effect waves-light">Atividades</a></li>
 		        <li><a href="#" class="waves-effect waves-light">Pedidos de Oração</a></li>

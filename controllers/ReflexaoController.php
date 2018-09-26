@@ -44,7 +44,7 @@ class ReflexaoController extends Controller{
 
     $this->loadTemplate("reflexao/ReflexaoAdd");
   }
-  public function editar($id){
+  public function alterar($id){
     $reflexaoDAO = new ReflexaoDAO();
     $reflexao = $reflexaoDAO->getReflexao($id);
     if($reflexao == null){
@@ -59,7 +59,7 @@ class ReflexaoController extends Controller{
       $descricao = addslashes($_POST['descricaoedit']);
       $reflexao = new Reflexao($titulo, $descricao);
       $reflexao->setId($id);
-      $reflexaoDAO->atualizar($reflexao);
+      $reflexaoDAO->alterar($reflexao);
       header("Location: ".BASE_URL.'reflexao');
       exit;
     }

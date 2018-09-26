@@ -9,7 +9,7 @@
         if(isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])){
           $nomePessoa = unserialize($_SESSION['usuario'])->getNome();
           $imagePessoa = unserialize($_SESSION['usuario'])->getImage()->getImagePath();
-          
+
           $data = array();
           $data['nome']=$nomePessoa;
           $data['imagem']=$imagePessoa;
@@ -95,7 +95,7 @@
         $this->loadTemplate('usuario/UsuarioAdd', $array);
 
       }
-      public function edit($id){
+      public function alterar($id){
         $usuario = new Usuario();
         $usuario->verificarUsuarioAdmin();
 
@@ -123,7 +123,7 @@
           $usuario->setImage($imagem);
 
           $usuarioDAO = new UsuarioDAO();
-          $id = $usuarioDAO->atualizar($usuario);
+          $id = $usuarioDAO->alterar($usuario);
           header("Location: ". BASE_URL."usuario/painel");
           exit;
         }

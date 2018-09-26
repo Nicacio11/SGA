@@ -106,18 +106,19 @@
     }
     return null;
   }
-  public function atualizar($usuario){
+  public function alterar($usuario){
     print_r($usuario);
     $nomedoarquivo = md5(time().rand(0, 99));
-    $path = $nomedoarquivo;
     $im = $usuario->getImage()->getImagePath();
     if($im['type']=='image/jpg'){
       $nomedoarquivo = '.jpg';
-    }else if($im['type']== 'jpeg'){
-      $nomedoarquivo = $nomedoarquivo.'.jpeg';
-    }else{
+    }else if($im['type']== 'image/png'){
       $nomedoarquivo = $nomedoarquivo.'.png';
+    }else{
+      $nomedoarquivo = $nomedoarquivo.'.jpeg';
     }
+    echo $nomedoarquivo;
+
     $sql = $this->db->prepare(
       "UPDATE usuario
        SET usuario.login=:usuario,
@@ -135,10 +136,10 @@
     $sqlImage = $this->db->prepare(
       "UPDATE usuario_image
        SET imagePath=:imagePath
-       WHERE Usuario_idUsuario=:idUsuario;"
+       WHERE Usuario_idUsuario=:idU;"
      );
-    $sqlImage->bindValue(":imagePath", $path);
-    $sqlImage->bindValue(":idUsuario", $usuario->getId());
+    $sqlImage->bindValue(":imagePath", $nomedoarquivo);
+    $sqlImage->bindValue(":idU", $usuario->getId());
     $sqlImage->execute();
 
     move_uploaded_file($im['tmp_name'], "assets/images/usuarios/".$nomedoarquivo);

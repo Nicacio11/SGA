@@ -50,7 +50,7 @@
         }
         $this->loadTemplate('testemunho/TestemunhoAdd');
       }
-      public function editar($id){
+      public function alterar($id){
         $usuario = new Usuario();
         $usuario->verificarUsuario();
         $testemunhoDAO = new TestemunhoDAO();
@@ -70,7 +70,7 @@
           $testemunho->setEmail(addslashes($_POST['emailtestemunhoedit']));
           $testemunho->setDescricao(addslashes($_POST['testemunhodescricaoedit']));
           $testemunho->setId($id);
-          $testemunhoDAO->atualizar($testemunho);
+          $testemunhoDAO->alterar($testemunho);
           header("Location: ".BASE_URL.'testemunho/painel');
           exit;
         }

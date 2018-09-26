@@ -69,8 +69,8 @@
     $sql->bindValue("id", $id);
     $sql->execute();
   }
-  public function atualizar($testemunho){
-    
+  public function alterar($testemunho){
+
     $sql = $this->db->prepare("UPDATE testemunho SET email=:email, nome=:nome, descricao=:descricao WHERE idTestemunho = :id");
     $sql->bindValue(":email", $testemunho->getEmail());
     $sql->bindValue(":nome", $testemunho->getNome());

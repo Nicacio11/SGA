@@ -71,7 +71,7 @@ class ReflexaoDAO extends BaseDAO{
     $sql->bindValue("id", $id);
     $sql->execute();
   }
-  public function atualizar($reflexao){
+  public function alterar($reflexao){
     $sql = $this->db->prepare("UPDATE reflexao SET titulo=:titulo, corpo=:corpo WHERE idReflexao = :idReflexao");
     $sql->bindValue(":titulo", $reflexao->getTitulo());
     $sql->bindValue(":corpo", $reflexao->getCorpo());

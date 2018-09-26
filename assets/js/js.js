@@ -185,7 +185,7 @@ function editUsuario(){
   var nome = document.getElementById('nomeedit').value
 
   if(login.trim() != '' && nome.trim() != ''){
-    alert("Adicionado com sucesso!")
+    alert("Alterado com sucesso!")
     return true
   }
   alert("Preencha todos os campos antes de adicionar!")

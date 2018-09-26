@@ -16,7 +16,7 @@
                 <td><?php echo $reflexao->getTitulo(); ?></td>
                 <td><?php echo $reflexao->getData(); ?></td>
                 <td>
-                  <a href="<?php echo BASE_URL;?>reflexao/editar/<?php echo $reflexao->getId();?>" class="btn blue waves-effect waves-light">Alterar</a>
+                  <a href="<?php echo BASE_URL;?>reflexao/alterar/<?php echo $reflexao->getId();?>" class="btn blue waves-effect waves-light">Alterar</a>
                   |
                   <a href="javascript: excluirReflexao(<?php echo $reflexao->getId();?>);" class="btn red waves-effect waves-light">Apagar</a></td>
               </tr>
@@ -24,9 +24,14 @@
           </tbody>
         </table>
         <ul class="pagination">
-            <?php for($q=1;$q<=$total_paginas;$q++): ?>
-    				<li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>Reflexao/index.php?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
-    				<?php endfor; ?>
+        <?php 
+            if($total_paginas!=1):
+              for($q=1;$q<=$total_paginas;$q++): ?>
+    				    <li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>usuario/painel/?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
+            <?php   
+              endfor;
+              endif; 
+            ?>
         </ul>
         <a class="btn green" href="<?php echo BASE_URL;?>Reflexao/adicionar">Adicionar Reflexao</a>
       <?php else: ?>

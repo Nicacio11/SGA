@@ -6,6 +6,7 @@
     private $descricao;
     private $image;
     private $tipo;
+    private $usuario;
 
     public function __construct($id = null, $titulo, $descricao, $foto){
       $this->id = ($id!=null?$id:null);
@@ -43,5 +44,11 @@
     }
     public function getTipo(){
       return $this->tipo;
+    }
+    public function setUsuario($usuario){
+        $this->usuario = $usuario;
+    }
+    public function getUsuario(){
+      return $this->usuario;
     }
   }
