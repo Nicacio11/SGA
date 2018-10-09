@@ -9,6 +9,11 @@ class ReflexaoController extends Controller{
   }
   public function index(){
 
+  }
+  public function painel(){
+    $usuario = new Usuario();
+    $usuario->verificarUsuario();
+
     $reflexaoDAO = new ReflexaoDAO();
     $total_reflexoes = $reflexaoDAO->getTotal();
 
@@ -26,9 +31,18 @@ class ReflexaoController extends Controller{
    $dado['total_reflexoes'] = $total_paginas;
    $dado['total_paginas'] = $total_paginas;
    $dado['p']=$p;
+   $dado['sucesso'] = (!empty($_GET['sucesso']))?$_GET['sucesso']:'';
+   $dado['alterado'] = (!empty($_GET['alterado']))?$_GET['alterado']:'';
+   $dado['removido'] = (!empty($_GET['removido']))?$_GET['removido']:'';
+
     $this->loadTemplate('reflexao/ReflexaoPainel', $dado);
   }
   public function adicionar(){
+    $usuario = new Usuario();
+    $usuario->verificarUsuario();
+        $array = array();
+        $array['erro'] = (!empty($_GET['erro']))?$_GET['erro']:'';
+
     if(
       (isset($_POST['tituloadd']) && !empty(trim($_POST['tituloadd']))) &&
       (isset($_POST['descricaoadd']) && !empty(trim($_POST['descricaoadd'])))
@@ -37,20 +51,28 @@ class ReflexaoController extends Controller{
       $descricao = addslashes($_POST['descricaoadd']);
       $reflexao = new Reflexao($titulo, $descricao);
       $reflexaoDAO = new ReflexaoDAO();
-      $reflexaoDAO->adicionar($reflexao);
-      header("Location: ".BASE_URL."Reflexao");
+      if($reflexaoDAO->adicionar($reflexao)){
+        header("Location: ".BASE_URL."Reflexao/painel?sucesso=exist");
+      }else{
+        header("Location: ".BASE_URL."Reflexao/adicionar?erro=exist");
+
+      }
       exit;
     }
 
-    $this->loadTemplate("reflexao/ReflexaoAdd");
+    $this->loadTemplate("reflexao/ReflexaoAdd", $array);
   }
   public function alterar($id){
+
+    $usuario = new Usuario();
+    $usuario->verificarUsuario();
     $reflexaoDAO = new ReflexaoDAO();
     $reflexao = $reflexaoDAO->getReflexao($id);
     if($reflexao == null){
-      header("Location: ".BASE_URL.'reflexao');
+      header("Location: ".BASE_URL.'reflexao/painel');
       exit;
     }
+    $array['erro'] = (!empty($_GET['alterado']))?$_GET['alterado']:'';
     if(isset($_POST['tituloedit']) && !empty(trim($_POST['tituloedit']))
     && isset($_POST['descricaoedit']) && !empty(trim($_POST['descricaoedit']))
   ){
@@ -59,8 +81,12 @@ class ReflexaoController extends Controller{
       $descricao = addslashes($_POST['descricaoedit']);
       $reflexao = new Reflexao($titulo, $descricao);
       $reflexao->setId($id);
-      $reflexaoDAO->alterar($reflexao);
-      header("Location: ".BASE_URL.'reflexao');
+
+      if($reflexaoDAO->alterar($reflexao)){
+        header("Location: ".BASE_URL."Reflexao/painel?alterado=exist");
+      }else{
+        header("Location: ".BASE_URL."Reflexao/alterar?erro=nonexist");
+      }
       exit;
     }
 
@@ -71,8 +97,16 @@ class ReflexaoController extends Controller{
 
   }
   public function apagar($id){
-      $dao = new ReflexaoDAO();
-      $dao->apagar($id);
+      $usuario = new Usuario();
+      $usuario->verificarUsuario();
+      if(!empty($id)){
+
+        $dao = new ReflexaoDAO();
+        if($dao->apagar($id)){
+          header('Location:'.BASE_URL.'reflexao/painel?removido=exist');
+          exit;
+        }
+      }
       header('Location:'.BASE_URL.'reflexao');
   }
 

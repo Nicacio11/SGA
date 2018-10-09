@@ -21,6 +21,11 @@
           Por Cristo, Senhor Nosso.
           Amém.”
         </blockquote>
+        <?php if(unserialize($_SESSION['usuario'])->getActive()==2):?>
+         <div class="center-align">
+           <a class="waves-effect waves-light btn carousel-background" href=<?php echo BASE_URL;?>usuario/painel>Painel de Usuarios</a>
+          </div>
+        <?php endif; ?>
       </div>
     </div>
   </div>

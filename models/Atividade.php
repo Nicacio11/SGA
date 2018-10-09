@@ -8,11 +8,11 @@
     private $tipo;
     private $usuario;
 
-    public function __construct($id = null, $titulo, $descricao, $foto){
+    public function __construct($id = null, $titulo, $descricao, $image){
       $this->id = ($id!=null?$id:null);
       $this->titulo = $titulo;
       $this->descricao = $descricao;
-      $this->foto = $foto;
+      $this->image = $image;
     }
     public function getId(){
       return $this->id;

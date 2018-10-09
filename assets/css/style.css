@@ -25,6 +25,23 @@ html{
   margin: 0;
 
 }
+.erro{
+  padding:10px;
+  margin-top:5px;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-radius:5px;
+  border:2px solid #f5c6cb;
+}
+.sucesso{
+  padding:10px;
+  margin-top:5px;
+  color: #155724;
+  background-color: #d4edda;
+
+  border-radius:5px;
+  border:2px solid #c3e6cb;
+}
 body{
  	margin: 0;
   height: 100%;
@@ -54,7 +71,7 @@ h3{
 }
 
 .carouselinicio{
-	margin-bottom: 200px;
+
 	background-color: #0288d1;
 	padding-bottom:  5px!important;
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
@@ -85,27 +102,11 @@ h3{
 
 
 	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-	margin-bottom:200px!important;
+
   transition: all 2s;
   -webkit-transition:all 2s;
 }
-.activities{
-	text-align: center;
-	background-color: #00695c;
-  background-image: url('../images/about.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-attachment: fixed;
-	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-	padding:5px!important;
-	margin-bottom: 150px;
-  transition: all 2s;
-  -webkit-transition:all 2s;
-}
+
 
 .img-thumbnail {
     padding: .25rem;
@@ -118,16 +119,103 @@ h3{
     transition: all 2s;
     -webkit-transition:all 2s;
 }
+.input-field label {
+     color: #000;
+   }
+   .input-field input[type=text],input[type=email],input[type=password],input[type=file],textarea {
+     color: #000!important;
+     border-bottom: 1px solid white!important;
 
+   }
+   .input-field input[type=text]:focus + label,
+   input[type=email]:focus + label,
+   input[type=password]:focus + label,
+   input[type=file]:focus + label,
+   textarea:focus + label {
+     color: #000!important;
+   }
+   .input-field input[type=text]:focus,
+   input[type=email]:focus,
+   input[type=password]:focus,
+   input[type=file]:focus,
+   textarea:focus {
+  border-bottom: 1px solid darkblue!important;
+  box-shadow: 0 1px 0 0 darkblue!important;
+}
+.input-field input[type=text].valid,
+input[type=email].valid,
+input[type=password].valid,
+input[type=file].valid,
+textarea.valid {
+   border-bottom: 1px solid darkgreen!important;
+   box-shadow: 0 1px 0 0 darkgreen!important;
+ }
+ /* invalid color */
+ .input-field input[type=text].invalid,
+ input[type=email].invalid,
+ input[type=password].invalid,
+ input[type=file].invalid,
+ textarea.invalid {
+   border-bottom: 1px solid red!important;
+   box-shadow: 0 1px 0 0 red!important;
+ }
+ /* icon prefix focus color */
+ .input-field .prefix.active {
+   color: #000;
+ }
+
+.mod{
+  margin-top:25px;
+  margin-bottom: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.mod blockquote{
+	font-family: monospace, monospace;
+    font-size: 1em;
+    display: block;
+    font-family: monospace;
+    white-space: pre-wrap;
+    margin: 1em 0px;
+    border-color: white;
+    transition: all 2s;
+    -webkit-transition:all 2s;
+}
 .activities-link{
 	color: #FFF;
 	border-radius: 3px;
 	padding: 5px;
 }
+.reflexao{
+  text-overflow:ellipsis;
+  max-height: 400px;
+}
 .reflexion{
-  margin-bottom: 60px;
+  max-height: 400px;
   transition: all 2s;
   -webkit-transition:all 2s;
+  background-image: url('../images/teste.jpg');
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+
+  /*
+  padding:100px;
+  */
+}
+.reflexaoTitle{
+  padding:10px;
+  margin-top:20px;
+}
+.reflexaoBody{
+  text-align: center;
+  text-decoration: none;
+  margin-top: 30px;
+}
+.reflexaoBody a{
+  color: white;
+  margin-top: 25px;
+  font-size: 15px;
 }
 .reflexion h5, h6{
 	color: white;

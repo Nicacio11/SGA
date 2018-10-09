@@ -2,6 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col s12 offset-2 m8 offset-m2 card-panel green accent-2">
+        <?php if($erro=='nonexist'):?>
+          <div class="erro">
+            Não foi possivel atualizar!
+          </div>
+        <?php endif;?>    
         <h5>Editar Reflexão</h5>
         <div class="formAlign">
           <form id="atualizarDescricao" method="post">

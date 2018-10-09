@@ -28,15 +28,20 @@
     *@param usuario {Usuario} - objeto usuario
     */
     public function cadastrar($usuario){
-        $sql = $this->db->prepare("INSERT INTO usuario (login, senha, nome, active) VALUES (:login, :senha, :nome, :active)");
-        $sql->bindValue(":login", $usuario->getUsuario());
-        $sql->bindValue(":senha", $usuario->getSenha());
-        $sql->bindValue(":nome", $usuario->getNome());
-        $sql->bindValue(":active", $usuario->getActive());
-        $sql->execute();
-        $lastId = $this->db->lastInsertId();
-
-        $this->insertImage($lastId, $usuario->getImage());
+        if( $this->usuarioExists($usuario->getUsuario()) == false){
+          $sql = $this->db->prepare("INSERT INTO usuario (login, senha, nome, active) VALUES (:login, :senha, :nome, :active)");
+          $sql->bindValue(":login", $usuario->getUsuario());
+          $sql->bindValue(":senha", $usuario->getSenha());
+          $sql->bindValue(":nome", $usuario->getNome());
+          $sql->bindValue(":active", $usuario->getActive());
+          $sql->execute();
+          $lastId = $this->db->lastInsertId();
+          
+          $this->insertImage($lastId, $usuario->getImage());
+          return true;
+        }else{
+          return false;
+        }
 
     }
 
@@ -107,42 +112,47 @@
     return null;
   }
   public function alterar($usuario){
-    print_r($usuario);
-    $nomedoarquivo = md5(time().rand(0, 99));
-    $im = $usuario->getImage()->getImagePath();
-    if($im['type']=='image/jpg'){
-      $nomedoarquivo = '.jpg';
-    }else if($im['type']== 'image/png'){
-      $nomedoarquivo = $nomedoarquivo.'.png';
-    }else{
-      $nomedoarquivo = $nomedoarquivo.'.jpeg';
+    try{
+
+        $nomedoarquivo = md5(time().rand(0, 99));
+        $im = $usuario->getImage()->getImagePath();
+        if($im['type']=='image/jpg'){
+          $nomedoarquivo = '.jpg';
+        }else if($im['type']== 'image/png'){
+          $nomedoarquivo = $nomedoarquivo.'.png';
+      }else{
+        $nomedoarquivo = $nomedoarquivo.'.jpeg';
+      }
+      echo $nomedoarquivo;
+
+      $sql = $this->db->prepare(
+        "UPDATE usuario
+        SET usuario.login=:usuario,
+        usuario.senha=:senha,
+        usuario.nome=:nome,
+        usuario.active=:active
+        WHERE usuario.idUsuario=:idUsuario;"
+      );
+      $sql->bindValue(":usuario", $usuario->getUsuario());
+      $sql->bindValue(":senha", $usuario->getSenha());
+      $sql->bindValue(":nome", $usuario->getNome());
+      $sql->bindValue(":active", $usuario->getActive());
+      $sql->bindValue(":idUsuario", $usuario->getId());
+      $sql->execute();
+      $sqlImage = $this->db->prepare(
+        "UPDATE usuario_image
+        SET imagePath=:imagePath
+        WHERE Usuario_idUsuario=:idU;"
+      );
+      $sqlImage->bindValue(":imagePath", $nomedoarquivo);
+      $sqlImage->bindValue(":idU", $usuario->getId());
+      $sqlImage->execute();
+      
+      move_uploaded_file($im['tmp_name'], "assets/images/usuarios/".$nomedoarquivo);
+      return true;
+    }catch(Exception $e){
+      return false;      
     }
-    echo $nomedoarquivo;
-
-    $sql = $this->db->prepare(
-      "UPDATE usuario
-       SET usuario.login=:usuario,
-       usuario.senha=:senha,
-       usuario.nome=:nome,
-       usuario.active=:active
-       WHERE usuario.idUsuario=:idUsuario;"
-    );
-    $sql->bindValue(":usuario", $usuario->getUsuario());
-    $sql->bindValue(":senha", $usuario->getSenha());
-    $sql->bindValue(":nome", $usuario->getNome());
-    $sql->bindValue(":active", $usuario->getActive());
-    $sql->bindValue(":idUsuario", $usuario->getId());
-    $sql->execute();
-    $sqlImage = $this->db->prepare(
-      "UPDATE usuario_image
-       SET imagePath=:imagePath
-       WHERE Usuario_idUsuario=:idU;"
-     );
-    $sqlImage->bindValue(":imagePath", $nomedoarquivo);
-    $sqlImage->bindValue(":idU", $usuario->getId());
-    $sqlImage->execute();
-
-    move_uploaded_file($im['tmp_name'], "assets/images/usuarios/".$nomedoarquivo);
   }
   public function getAll($page, $perPage){
     $offset = ($page - 1) * $perPage;
@@ -172,6 +182,18 @@
     $sql = $this->db->prepare("UPDATE usuario SET active=0 WHERE idUsuario=:id");
     $sql->bindValue("id", $id);
     $sql->execute();
+  }
+  public function usuarioExists($usuario){
+    $sql = "SELECT login FROM usuario WHERE login = :login";
+    $sql = $this->db->prepare($sql);
+    $sql->bindValue(":login", $usuario);
+    $sql->execute();
+
+    if($sql->rowCount()>0){
+      return true;
+    }else{
+      return false;
+    }
   }
 }
 ?>

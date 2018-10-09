@@ -1,11 +1,19 @@
 
-
 <div class="painelInterno2">
+
   <div class="container">
     <div class="row">
       <div class="col s12 offset-2 m8 offset-m2 card-panel green accent-2">
+      <?php if($erro=='exist'):?>
+        <div class="erro">
+          Usuario já existente, tente outro!
+        </div>
+      <?php endif;?>
+
         <h5>Adicionar Usuário</h5>
         <div class="formAlign">
+
+
           <form id="usuarioadd" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="input-field col offset-m2 m8 offset-m2">

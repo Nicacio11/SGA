@@ -12,9 +12,9 @@
         </div>
       <?php endif;?>
 
-      <?php if( !empty($reflexoes != null) ): ?>
+      <?php if( !empty($videos != null) ): ?>
       <div>
-        <h4>Reflexões</h4>
+        <h4>Videos</h4>
         <div class="container">
           <hr/>
           <br/><br/><br/>
@@ -24,19 +24,18 @@
           <thead>
              <tr>
                  <th>Titulo</th>
-                 <th>Data</th>
-                 <th>Ação</th>
+                 <th>Url</th>
              </tr>
            </thead>
           <tbody>
-              <?php foreach($reflexoes as $reflexao): ?>
+              <?php foreach($videos as $video): ?>
               <tr>
-                <td><?php echo $reflexao->getTitulo(); ?></td>
-                <td><?php echo $reflexao->getData(); ?></td>
+                <td><?php echo $video->getTitulo(); ?></td>
+                <td><?php echo $video->getVideoPath(); ?></td>
                 <td>
-                  <a href="<?php echo BASE_URL;?>reflexao/alterar/<?php echo $reflexao->getId();?>" class="btn blue waves-effect waves-light">Alterar</a>
+                  <a href="<?php echo BASE_URL;?>video/alterar/<?php echo $video->getId();?>" class="btn blue waves-effect waves-light">Alterar</a>
                   |
-                  <a href="javascript: excluirReflexao(<?php echo $reflexao->getId();?>);" class="btn red waves-effect waves-light">Apagar</a></td>
+                  <a href="javascript: excluirVideo(<?php echo $video->getId();?>);" class="btn red waves-effect waves-light">Apagar</a></td>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -45,16 +44,16 @@
         <?php
             if($total_paginas!=1):
               for($q=1;$q<=$total_paginas;$q++): ?>
-    				    <li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>reflexao/painel/?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
+    				    <li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>video/painel/?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
             <?php
               endfor;
               endif;
             ?>
         </ul>
-        <a class="btn green" href="<?php echo BASE_URL;?>Reflexao/adicionar">Adicionar Reflexao</a>
+        <a class="btn green" href="<?php echo BASE_URL;?>video/adicionar">Adicionar Vídeo</a>
       <?php else: ?>
-          <p> Nenhuma reflexão adicionada</p>
-          <a class="btn green" href="<?php echo BASE_URL;?>Reflexao/adicionar">Adicionar Reflexao</a>
+          <p> Nenhum vídeo adicionado</p>
+          <a class="btn green" href="<?php echo BASE_URL;?>video/adicionar">Adicionar Vídeo</a>
       <?php endif; ?>
     </div>
   </div>

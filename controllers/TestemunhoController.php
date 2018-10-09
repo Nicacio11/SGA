@@ -12,6 +12,11 @@
         $usuario = new Usuario();
         $usuario->verificarUsuario();
 
+        $dado = array();
+        $dado['sucesso'] = (!empty($_GET['sucesso']))?$_GET['sucesso']:'';
+        $dado['alterado'] = (!empty($_GET['alterado']))?$_GET['alterado']:'';
+        $dado['removido'] = (!empty($_GET['removido']))?$_GET['removido']:'';
+
         $testemunhoDAO = new TestemunhoDAO();
         $total_testemunhos = $testemunhoDAO->getTotal();
 
@@ -34,6 +39,9 @@
       public function adicionar(){
         $usuario = new Usuario();
         $usuario->verificarUsuario();
+        $array = array();
+        $array['erro'] = (!empty($_GET['erro']))?$_GET['erro']:'';
+
         if(
           (isset($_POST['nometestemunhoadd']) && !empty(trim($_POST['nometestemunhoadd']))) &&
           (isset($_POST['emailtestemunhoadd']) && !empty(trim($_POST['emailtestemunhoadd']))) &&
@@ -44,17 +52,23 @@
           $testemunho->setEmail(addslashes($_POST['emailtestemunhoadd']));
           $testemunho->setDescricao(addslashes($_POST['testemunhodescricaoadd']));
           $testemunhoDAO = new TestemunhoDAO();
-          $testemunhoDAO->adicionar($testemunho);
-          header("Location: ".BASE_URL."testemunho/painel");
+
+          if($testemunhoDAO->adicionar($testemunho)){
+            header("Location: ".BASE_URL."testemunho/painel?sucesso=exist");
+          }else{
+            header("Location: ". BASE_URL."usuario/adicionar?erro=exist");
+          }
           exit;
         }
-        $this->loadTemplate('testemunho/TestemunhoAdd');
+        $this->loadTemplate('testemunho/TestemunhoAdd', $array);
       }
       public function alterar($id){
         $usuario = new Usuario();
         $usuario->verificarUsuario();
         $testemunhoDAO = new TestemunhoDAO();
         $testemunho = $testemunhoDAO->getTestemunho($id);
+        $array = array();
+        $array['erro'] = (!empty($_GET['alterado']))?$_GET['alterado']:'';
         if($testemunho == null){
           header("Location: ".BASE_URL.'testemunho/painel');
           exit;
@@ -70,8 +84,14 @@
           $testemunho->setEmail(addslashes($_POST['emailtestemunhoedit']));
           $testemunho->setDescricao(addslashes($_POST['testemunhodescricaoedit']));
           $testemunho->setId($id);
-          $testemunhoDAO->alterar($testemunho);
-          header("Location: ".BASE_URL.'testemunho/painel');
+
+          if($testemunhoDAO->alterar($testemunho)){
+
+            header("Location: ".BASE_URL.'testemunho/painel?alterado=exist');
+          }else{
+            header("Location: ".BASE_URL.'testemunho/alterar?erro=nonexist');
+
+          }
           exit;
         }
         $array['testemunho'] = $testemunho;
@@ -80,9 +100,15 @@
       public function apagar($id){
           $usuario = new Usuario();
           $usuario->verificarUsuario();
-          $dao = new TestemunhoDAO();
-          $dao->apagar($id);
-          header('Location:'.BASE_URL.'testemunho');
+
+          if(!empty($id)){
+            $dao = new TestemunhoDAO();
+            if($dao->apagar($id)){
+              header('Location:'.BASE_URL.'testemunho/painel?removido=exist');
+               exit;
+            }
+          }
+          header('Location:'.BASE_URL.'testemunho/painel');
       }
   }
 

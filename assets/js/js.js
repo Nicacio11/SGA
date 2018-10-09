@@ -7,7 +7,7 @@ if(environment == "development"){
 	url="http://www.vitornicacio.com.br/projetos/SGA/";
 }
 $(function(){
-
+	$('.modal').modal();
 	$('.carousel.carousel-slider').carousel({
 	    fullWidth: true,
 			indicators: true
@@ -25,6 +25,14 @@ $(function(){
 		$('#descricao').on('submit', function(e){
 			//e.preventDefault();
 			adicionarReflexao();
+		});
+		$('#videoadd').on('submit', function(e){
+			//e.preventDefault();
+			adicionarVideo();
+		});
+		$('#videoedit').on('submit', function(e){
+			//e.preventDefault();
+		atualizarVideo();
 		});
 		$('#atualizarDescricao').on('submit', function(e){
 			//e.preventDefault();
@@ -51,6 +59,9 @@ $(function(){
 		$('textarea#testemunhodescricaoadd').characterCounter();
 		$('textarea#testemunhodescricaoedit').characterCounter();
 		$('textarea#descricaoedit').characterCounter();
+		$('textarea#descricaoav').characterCounter();
+		$('textarea#descricaoev').characterCounter();
+
 
 });
 function next(){
@@ -81,11 +92,37 @@ function logar(){
 			}
 		});
 }
+function adicionarVideo(){
+	var titulo =	document.getElementById('titulo').value;
+	var url =	document.getElementById('titulo').value;
+	var descricao = document.getElementById('url').value;
+		if( titulo.trim() != "" && descricao.trim() != "" && url.trim() != "" ){
+			return true;
+		}
+	alert("Verifique se todas as informações estão corretas!");
+	return false;
+}
+function atualizarVideo(){
+	var titulo =	document.getElementById('titulo').value;
+	var descricao = document.getElementById('descricao').value;
+	var url =	document.getElementById('url').value;
+		if( titulo.trim() != "" && descricao.trim() != "" && url.trim() != "" ){
+			return true;
+		}
+	alert("Verifique se todas as informações estão corretas!");
+	return false;
+}
+function excluirVideo(id){
+	var resposta = confirm("Deseja remover esse registro?");
+
+	if(resposta == true){
+		window.location.href = url+"video/apagar/"+id
+	}
+}
 function adicionarReflexao(){
 	var titulo =	document.getElementById('tituloadd').value;
 	var descricao = document.getElementById('descricaoadd').value;
 		if( titulo.trim() != "" && descricao.trim() != ""){
-			alert("Adicionado com sucesso!");
 			return true;
 		}
 	alert("Verifique se todas as informações estão corretas!");
@@ -95,7 +132,6 @@ function atualizarReflexao(){
 	var titulo =	document.getElementById('tituloedit').value;
 	var descricao = document.getElementById('descricaoedit').value;
 		if( titulo.trim() != "" && descricao.trim() != ""){
-			alert("Atualizado com sucesso!");
 			return true;
 		}
 	alert("Verifique se todas as informações estão corretas!");
@@ -113,7 +149,6 @@ function adicionarTestemunho(){
 	var descricao = document.getElementById('testemunhodescricaoadd').value;
 	var email = document.getElementById('emailtestemunhoadd').value;
 		if( nome.trim() != "" && descricao.trim() != "" && email.trim() !=""){
-			alert("Adicionado com sucesso!");
 			return true;
 		}
 	alert("Verifique se todas as informações estão corretas!");
@@ -124,7 +159,6 @@ function atualizarTestemunho(){
 	var descricao = document.getElementById('testemunhodescricaoedit').value;
 	var email = document.getElementById('emailtestemunhoedit').value;
 		if( nome.trim() != "" && descricao.trim() != "" && email.trim() !=""){
-			alert("Atualizado com sucesso!");
 			return true;
 		}
 	alert("Verifique se todas as informações estão corretas!");
@@ -134,7 +168,7 @@ function excluirTestemunho(id){
 	var resposta = confirm("Deseja remover esse registro?");
 
 	if(resposta == true){
-		window.location.href = url+"testemunho/apagar/"+id
+		window.location.href = url+"testemunho/apagar/"+id;
 	}
 }
 
@@ -174,7 +208,7 @@ function addUsuario(){
   var nome = document.getElementById('nomeadd').value
 
   if(login.trim() != '' && nome.trim() != ''){
-    alert("Adicionado com sucesso!")
+    //alert("Adicionado com sucesso!")
     return true
   }
   alert("Preencha todos os campos antes de adicionar!")
@@ -185,7 +219,7 @@ function editUsuario(){
   var nome = document.getElementById('nomeedit').value
 
   if(login.trim() != '' && nome.trim() != ''){
-    alert("Alterado com sucesso!")
+    //alert("Alterado com sucesso!")
     return true
   }
   alert("Preencha todos os campos antes de adicionar!")

@@ -4,7 +4,7 @@
     private $titulo;
     private $corpo;
     private $data;
-    private $idUsuario;
+    private $usuario;
 
     public function __construct($titulo, $corpo){
       $this->titulo = $titulo;
@@ -16,11 +16,11 @@
     public function setId($id){
       $this->id=$id;
     }
-    public function getIdUsuario(){
-      return $this->idUsuario;
+    public function getUsuario(){
+      return $this->usuario;
     }
-    public function setIdUsuario($idUsuario){
-      $this->idUsuario=$idUsuario;
+    public function setUsuario($usuario){
+      $this->usuario=$usuario;
     }
     public function setTitulo($titulo){
       $this->titulo=$titulo;

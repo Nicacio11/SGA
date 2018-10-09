@@ -21,24 +21,6 @@ CREATE TABLE IF NOT EXISTS usuario_image(
 
 
 
-CREATE TABLE IF NOT EXISTS coordenador(
-  idCoordenador INT(10) PRIMARY KEY AUTO_INCREMENT,
-  nome VARCHAR(50) not null,
-  imagePath VARCHAR(50) not null,
-  Ministerio_idMinisterio INT(1) UNIQUE NOT NULL
-);
-
-
-CREATE TABLE IF NOT EXISTS ministerio(
-  idMinisterio INT(10) PRIMARY KEY AUTO_INCREMENT,
-  --Coordenador_idCoordenador INT(10) not null,
-  Usuario_idUsuario INT(10) not null,
-  descricao VARCHAR(150) not null,
-  nome VARCHAR(30) not null,
-  --FOREIGN KEY(Coordenador_idCoordenador) REFERENCES coordenador(idCoordenador)
-);
-
-
 CREATE TABLE IF NOT EXISTS video(
     idVideo INT(10) PRIMARY KEY AUTO_INCREMENT,
     Usuario_idUsuario INT(10) not null,
@@ -104,16 +86,8 @@ ALTER TABLE usuario_image
 ADD CONSTRAINT FK_USUARIO_IMAGE
 FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario);
 
-ALTER TABLE coordenador
-ADD CONSTRAINT FK_COORDENADOR_MINISTERIO
-FOREIGN KEY(Ministerio_idMinisterio) REFERENCES ministerio(idMinisterio);
-
 ALTER TABLE video
 ADD CONSTRAINT FK_VIDEO_USUARIO
-FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario);
-
-ALTER TABLE quemsomos
-ADD CONSTRAINT FK_QUEMSOMOS_USUARIO
 FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario);
 
 ALTER TABLE testemunho
@@ -140,3 +114,4 @@ FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario);
 ALTER TABLE galeria_image
 ADD CONSTRAINT FK_GALERIA_IMAGE
 FOREIGN KEY(Galeria_idGaleria) REFERENCES galeria(idGaleria);
+    

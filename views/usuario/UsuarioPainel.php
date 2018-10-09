@@ -1,7 +1,25 @@
 <div class="painelInterno2">
   <div class="container">
+
     <div>
+      <?php if($sucesso=='exist'):?>
+        <div class="sucesso">
+          Cadastrado com sucesso!
+        </div>
+      <?php endif;?>
+      <?php if($alterado=='exist'):?>
+        <div class="sucesso">
+          Modificado com sucesso!
+        </div>
+      <?php endif;?>
       <?php if( !empty($usuarios != null) ): ?>
+      <div>
+        <h4>Usuários</h4>
+        <div class="container">
+          <hr/>
+          <br/><br/><br/>
+        </div>
+      </div>  
         <table class="centered highlight">
           <thead>
              <tr>

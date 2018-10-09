@@ -7,12 +7,16 @@ class VideoDAO extends BaseDAO{
   }
 
   public function adicionar($video){
+    $retorno = false;
     $sql = $this->db->prepare("INSERT INTO video (titulo, descricao, url, Usuario_idUsuario) VALUES (:titulo, :descricao, :url, :idUsuario)");
     $sql->bindValue(":titulo", $video->getTitulo());
     $sql->bindValue(":descricao", $video->getDescricao());
     $sql->bindValue(":url", $video->getVideoPath());
     $sql->bindValue(":idUsuario", unserialize($_SESSION['usuario'])->getId());
-    $sql->execute();
+    if($sql->execute()){
+      $retorno = true;
+    }
+    return $retorno;
   }
 
   public function getVideos($page, $perPage){
@@ -20,8 +24,8 @@ class VideoDAO extends BaseDAO{
 
     $videos = array();
     $sql= $this->db->prepare("SELECT idVideo, titulo, descricao, url, usuario.nome
-     FROM video 
-     INNER JOIN usuario on usuario.idUsuario=video.Usuario_idUsuario 
+     FROM video
+     INNER JOIN usuario on usuario.idUsuario=video.Usuario_idUsuario
      LIMIT $offset, $perPage;");
     $sql->execute();
 
@@ -31,7 +35,7 @@ class VideoDAO extends BaseDAO{
         $video->setTitulo($vid['titulo']);
         $video->setDescricao($vid['descricao']);
         $video->setId($vid['idVideo']);
-        $video->setUrl($vid['url']);
+        $video->setVideoPath($vid['url']);
         $usuario = new Usuario();
         $usuario->setNome($vid['nome']);
         $video->setUsuario($usuario);
@@ -42,13 +46,14 @@ class VideoDAO extends BaseDAO{
   }
   public function getLastVideo(){
     $video;
-    $sql = $this->db->prepare("SELECT idVideo, 
-    titulo, 
-    descricao, 
-    url, 
-    nome 
+    $sql = $this->db->prepare("SELECT idVideo,
+    video.titulo,
+    video.descricao,
+    video.url,
+    usuario.nome,
+    usuario_image.imagePath
     FROM video
-    INNER JOIN usuario on usuario.idUsuario=video.Usuario_idUsuario 
+    INNER JOIN usuario on usuario.idUsuario=video.Usuario_idUsuario
     INNER JOIN usuario_image on usuario_image.Usuario_idUsuario= usuario.idUsuario
     ORDER BY idVideo DESC LIMIT 1
     ");
@@ -60,7 +65,7 @@ class VideoDAO extends BaseDAO{
       $video->setTitulo($vid['titulo']);
       $video->setDescricao($vid['descricao']);
       $video->setId($vid['idVideo']);
-      $video->setUrl($vid['url']);
+      $video->setVideoPath($vid['url']);
       $usuario = new Usuario();
       $usuario->setId($vid['nome']);
       $foto = new Image();
@@ -73,14 +78,13 @@ class VideoDAO extends BaseDAO{
   }
   public function getVideo($id){
     $video;
-    $sql = $this->db->prepare("SELECT idVideo, 
-    titulo, 
-    descricao, 
-    url, 
+    $sql = $this->db->prepare("SELECT idVideo,
+    titulo,
+    descricao,
+    url,
     nome
-    FROM video 
-    INNER JOIN usuario on usuario.idUsuario=video.Usuario_idUsuario 
-    INNER JOIN usuario_image on usuario_image.Usuario_idUsuario= usuario.idUsuario 
+    FROM video
+    INNER JOIN usuario on usuario.idUsuario=video.Usuario_idUsuario
     WHERE idVideo=:id");
     $sql->bindValue("id", $id);
     $sql->execute();
@@ -91,28 +95,32 @@ class VideoDAO extends BaseDAO{
         $video->setTitulo($vid['titulo']);
         $video->setDescricao($vid['descricao']);
         $video->setId($vid['idVideo']);
-        $video->setUrl($vid['url']);
-        $usuario = new Usuario();
-        $usuario->setId($vid['nome']);
-        $foto = new Image();
-        $foto->setImagePath($vid['imagePath']);
-        $usuario->setImage($foto);
-        $video->setUsuario($usuario);
+        $video->setVideoPath($vid['url']);
       return $video;
     }
     return null;
   }
   public function apagar($id){
+    $retorno= false;
     $sql = $this->db->prepare("DELETE FROM video WHERE idVideo=:id");
     $sql->bindValue("id", $id);
-    $sql->execute();
+    if($sql->execute()){
+      $retorno = true;
+    }
+    return $retorno;
   }
   public function alterar($video){
-    $sql = $this->db->prepare("UPDATE video SET titulo=:titulo, corpo=:corpo WHERE idVideo = :idVideo");
+    $retorno = false;
+    $sql = $this->db->prepare("UPDATE video SET titulo=:titulo, url=:url, descricao=:descricao WHERE idVideo = :idVideo");
     $sql->bindValue(":titulo", $video->getTitulo());
-    $sql->bindValue(":corpo", $video->getCorpo());
+    $sql->bindValue(":url", $video->getVideoPath());
+    $sql->bindValue(":descricao", $video->getDescricao());
+
     $sql->bindValue(":idVideo", $video->getId());
-    $sql->execute();
+    if($sql->execute()){
+      $retorno = true;
+    }
+    return $retorno;
   }
   public function getTotal(){
     $sql = $this->db->query("SELECT COUNT(*) as c FROM video");

@@ -13,7 +13,7 @@
       $this->id=$id;
     }
     public function setTitulo($titulo){
-      $this->titulo-$titulo;
+      $this->titulo=$titulo;
     }
     public function getTitulo(){
       return $this->titulo;
@@ -30,7 +30,7 @@
     public function setVideoPath($videoPath){
       $this->videoPath=$videoPath;
     }
-    
+
 
     public function getUsuario()
     {

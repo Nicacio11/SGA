@@ -56,7 +56,7 @@
     }
 
     public function verificarUsuario(){
-      if($_SESSION['usuario'] == null || unserialize($_SESSION['usuario'])->getActive() == 1){
+      if($_SESSION['usuario'] == null || unserialize($_SESSION['usuario'])->getActive() < 1){
         header("location: ".BASE_URL."Usuario");
       }
     }

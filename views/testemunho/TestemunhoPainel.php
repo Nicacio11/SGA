@@ -1,8 +1,26 @@
 <div class="painelInterno2">
   <div class="container">
     <div>
+    <?php if($sucesso=='exist'):?>
+        <div class="sucesso">
+          Cadastrado com sucesso!
+        </div>
+      <?php endif;?>
+      <?php if($alterado=='exist'):?>
+        <div class="sucesso">
+          Modificado com sucesso!
+        </div>
+      <?php endif;?>
+
       <?php if( !empty($testemunhos != null) ): ?>
-        <table class="centered highlight">
+      <div>
+        <h4>Testemunhos</h4>
+        <div class="container">
+          <hr/>
+          <br/><br/><br/>
+        </div>
+      </div>
+      <table class="centered highlight">
           <thead>
              <tr>
                  <th>Nome</th>
@@ -21,19 +39,20 @@
                 <td>
                   <a href="<?php echo BASE_URL;?>testemunho/alterar/<?php echo $testemunho->getId();?>" class="btn blue waves-effect waves-light">Alterar</a>
                   |
-                  <a href="javascript: excluirtestemunho(<?php echo $testemunho->getId();?>);" class="btn red waves-effect waves-light">Apagar</a></td>
+                  <a href="javascript: excluirTestemunho(<?php echo $testemunho->getId();?>);" class="btn red waves-effect waves-light">Apagar</a></td>
               </tr>
             <?php endforeach; ?>
           </tbody>
         </table>
+
         <ul class="pagination">
-        <?php 
+        <?php
             if($total_paginas!=1):
               for($q=1;$q<=$total_paginas;$q++): ?>
-    				    <li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>usuario/painel/?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
-            <?php   
+    				    <li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>testemunho/painel/?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
+            <?php
               endfor;
-              endif; 
+              endif;
             ?>
         </ul>
         <a class="btn green" href="<?php echo BASE_URL;?>testemunho/adicionar">Adicionar Testemunho!</a>
@@ -44,3 +63,8 @@
     </div>
   </div>
 </div>
+<?php if($removido=='exist'):?>
+  <script>
+      alert("Removido com sucesso");
+  </script>
+<?php endif;?>

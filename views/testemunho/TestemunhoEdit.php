@@ -2,7 +2,12 @@
   <div class="container">
     <div class="row">
       <div class="col s12 offset-2 m8 offset-m2 card-panel green accent-2">
-        <h5>Atualizar Testemunho</h5>
+      <?php if($erro=='nonexist'):?>
+          <div class="erro">
+            Não foi possivel atualizar!
+          </div>
+        <?php endif;?>    
+      <h5>Atualizar Testemunho</h5>
         <div class="formAlign">
           <form id="testemunhoedit" method="post">
             <div class="row">
@@ -14,7 +19,7 @@
 
               <div class="input-field col offset-m2 m8 offset-m2">
 
-                <input required id="emailtestemunhoedit" name="emailtestemunhoedit" type="text" autocomplete="off" value="<?php echo $testemunho->getEmail();?>" class="novalidate text-white">
+                <input required id="emailtestemunhoedit" name="emailtestemunhoedit" type="email" autocomplete="off" value="<?php echo $testemunho->getEmail();?>" class="novalidate text-white">
                 <label for="Email">Email</label>
               </div>
               <div class="input-field col offset-m2 m8 offset-m2">

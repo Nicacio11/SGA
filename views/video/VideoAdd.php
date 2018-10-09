@@ -7,24 +7,23 @@
           Problema ao cadastrar!
         </div>
       <?php endif;?>
-        <h5>Adicionar Testemunho</h5>
+        <h5>Adicionar Video</h5>
         <div class="formAlign">
-          <form id="testemunhoadd" method="post">
+          <form id="videoadd" method="post">
             <div class="row">
               <div class="input-field col offset-m2 m8 offset-m2">
 
-                <input required id="nometestemunhoadd" name="nometestemunhoadd" type="text" autocomplete="off" autocomplete="off" class="novalidate text-white">
-                <label for="Nome">Nome</label>
-              </div>
-
-              <div class="input-field col offset-m2 m8 offset-m2">
-
-                <input required id="emailtestemunhoadd" name="emailtestemunhoadd" type="email" autocomplete="off" class="novalidate text-white">
-                <label for="Email">Email</label>
+                <input required id="tituloav" name="tituloav" type="text" autocomplete="off" class="novalidate text-white">
+                <label for="titulo">Titulo</label>
               </div>
               <div class="input-field col offset-m2 m8 offset-m2">
 
-                <textarea autocomplete="off" required id="testemunhodescricaoadd" name="testemunhodescricaoadd" class="materialize-textarea text-white" data-length="2000"></textarea>
+                <input required id="urlav" name="urlav" type="url" autocomplete="off" class="novalidate text-white">
+                <label for="url">Url</label>
+              </div>
+              <div class="input-field col offset-m2 m8 offset-m2">
+
+                <textarea autocomplete="off" required id="descricaoav" name="descricaoav" class="materialize-textarea text-white" data-length="2000"></textarea>
                 <label for="descricao">Descricão</label>
               </div>
             </div>
