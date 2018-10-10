@@ -6,7 +6,43 @@ if(environment == "development"){
 }else{
 	url="http://www.vitornicacio.com.br/projetos/SGA/";
 }
+var diaSemana = ['Domingo', 'Segunda-Feira', 'Terca-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sabado'];
+var mesAno = [ 'Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro' ];
+var data = new Date();
+var hoje = diaSemana[data.getDay()] + ', ' + mesAno[data.getMonth()] + ' de ' + data.getFullYear();
+//$("#dataPesquisa").attr("value", hoje);
+$(".datepicker").datepicker({
+		i18n: {
+		monthsFull: mesAno,
+		monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+		weekdaysFull: diaSemana,
+		weekdaysShort: [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab' ],
+		months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+		weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+		weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+		today: 'Hoje',
+		clear: 'Limpar',
+		cancel: 'Sair',
+		done: 'Confirmar',
+		selectMonths: true,
+		selectYears: true,
+		clear: false,
+		format: 'dd/mmm/yyyy',
+		today: "Hoje",
+		close: "X",
+		min: new Date(data.getFullYear() - 1, 0, 1),
+		max: new Date(data.getFullYear() + 1, 11, 31),
+	},
+		format: 'dd/mm/yyyy',
+		container: 'body'
+});
+$("#dataPesquisa").click(function (event) {
+		event.stopPropagation();
+		$(".datepicker").first().pickadate("picker").open();
+});
+
 $(function(){
+
 	$('.modal').modal();
 	$('.carousel.carousel-slider').carousel({
 	    fullWidth: true,
@@ -25,6 +61,14 @@ $(function(){
 		$('#descricao').on('submit', function(e){
 			//e.preventDefault();
 			adicionarReflexao();
+		});
+		$('#atividadeadd').on('submit', function(e){
+			//e.preventDefault();
+			adicionarAtividade();
+		});
+		$('#atividadeedit').on('submit', function(e){
+			//e.preventDefault();
+			atualizarAtividade();
 		});
 		$('#videoadd').on('submit', function(e){
 			//e.preventDefault();
@@ -61,8 +105,6 @@ $(function(){
 		$('textarea#descricaoedit').characterCounter();
 		$('textarea#descricaoav').characterCounter();
 		$('textarea#descricaoev').characterCounter();
-
-
 });
 function next(){
 	$('.carousel').carousel('next');
@@ -91,6 +133,91 @@ function logar(){
 				$('.msg').html("Usuario ou senha incorretos");
 			}
 		});
+}
+function adicionarAtividade(){
+	var titulo =	document.getElementById('tituloaa').value;
+	var descricao = document.getElementById('descricaoaa').value;
+	var data =	document.getElementById('dataPesquisa').value;
+		if( titulo.trim() != "" && descricao.trim() != "" && data.trim() != "" ){
+			return true;
+		}
+	alert("Verifique se todas as informações estão corretas!");
+	return false;
+}
+function atualizarAtividade(){
+	var titulo =	document.getElementById('tituloea').value;
+	var descricao = document.getElementById('descricaoea').value;
+	var data =	document.getElementById('dataPesquisaea').value;
+		if( titulo.trim() != "" && descricao.trim() != "" && data.trim() != "" ){
+			return true;
+		}
+	alert("Verifique se todas as informações estão corretas!");
+	return false;
+}
+function excluirAtividade(id){
+	var resposta = confirm("Deseja remover esse registro?");
+
+	if(resposta == true){
+		window.location.href = url+"atividade/apagar/"+id
+	}
+}
+function validaimagemAddAtividade() {
+  var extensoesOk = ",.jpg,.jpeg,.png,";
+  var extensao	= "," + document.getElementById('imagemAtividadeaa').value.substr( document.getElementById('imagemAtividadeaa').value.length - 4 ).toLowerCase() + ",";
+  if (document.getElementById('imagemAtividadeaa') == "")
+   {
+     alert("O campo do endereço da imagem está vazio!!")
+   }
+  else if( extensoesOk.indexOf( extensao ) == -1 )
+   {
+     alert( document.getElementById('imagemAtividadeaa').value + "\nNão possui uma extensão válida" );
+     location.reload()
+   }
+  else {
+    tamanhosAddAtividade()
+  }
+}
+function tamanhosAddAtividade() {
+  var imagem=new Image();
+  imagem.src=document.getElementById('imagemAtividadeaa').value;
+
+  tamanho_imagem = imagem.fileSize
+  img_tan = tamanho_imagem
+  if (tamanho_imagem < 0)
+   {tamanhosAddAtividade()}
+  else if (tamanho_imagem > 150000)
+  {
+    alert("O tamanho da Imagem é muito grande ...  "+tamanho_imagem+" Bytes!!")
+  }
+}
+function validaimagemEditAtividade() {
+  var extensoesOk = ",.jpg,.jpeg,.png,";
+  var extensao	= "," + document.getElementById('imagemAtividadeea').value.substr( document.getElementById('imagemAtividadeea').value.length - 4 ).toLowerCase() + ",";
+  if (document.getElementById('imagemAtividadeea') == "")
+   {
+     alert("O campo do endereço da imagem está vazio!!")
+   }
+  else if( extensoesOk.indexOf( extensao ) == -1 )
+   {
+     alert( document.getElementById('imagemAtividadeea').value + "\nNão possui uma extensão válida" );
+     location.reload()
+   }
+  else {
+    tamanhosEditAtividade()
+  }
+}
+function tamanhosEditAtividade() {
+  var imagem=new Image();
+  imagem.src=document.getElementById('imagemAtividadeea').value;
+
+  tamanho_imagem = imagem.fileSize
+  img_tan = tamanho_imagem
+  if (tamanho_imagem < 0)
+   {tamanhosEditAtividade()}
+  else if (tamanho_imagem > 150000)
+  {
+    alert("O tamanho da Imagem é muito grande ...  "+tamanho_imagem+" Bytes!!")
+  }
 }
 function adicionarVideo(){
 	var titulo =	document.getElementById('titulo').value;

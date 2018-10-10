@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS video(
     idVideo INT(10) PRIMARY KEY AUTO_INCREMENT,
     Usuario_idUsuario INT(10) not null,
     titulo VARCHAR(25) not null,
-    descricao VARCHAR(150) not null,
+    descricao VARCHAR(2000) not null,
     url VARCHAR(50) not null,
     --FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS testemunho(
     idTestemunho INT(10) PRIMARY KEY AUTO_INCREMENT,
     Usuario_idUsuario INT(10) not null,
     email VARCHAR(50) not null,
-    descricao VARCHAR(150) not null,
+    descricao VARCHAR(2000) not null,
     nome VARCHAR(30) not null,
     --FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS reflexao(
     idReflexao INT(10) PRIMARY KEY AUTO_INCREMENT,
     Usuario_idUsuario INT(10) not null,
     titulo VARCHAR(100) not null,
-    corpo VARCHAR(400) not null,
+    corpo VARCHAR(2000) not null,
     data DATETIME not null,
     --FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
@@ -55,8 +55,8 @@ CREATE TABLE IF NOT EXISTS atividade(
     idAtividade INT(10) PRIMARY KEY AUTO_INCREMENT,
     Usuario_idUsuario INT(10) not null,
     titulo VARCHAR(105) not null,
-    descricao VARCHAR(350) not null,
-    tipo ENUM('ATD', 'EVT'), -- 1 atividades regulares 2 - eventos
+    descricao VARCHAR(2000) not null,
+    data Date
     --FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
 );
 
@@ -114,4 +114,3 @@ FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario);
 ALTER TABLE galeria_image
 ADD CONSTRAINT FK_GALERIA_IMAGE
 FOREIGN KEY(Galeria_idGaleria) REFERENCES galeria(idGaleria);
-    

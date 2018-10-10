@@ -82,7 +82,7 @@
           $video->setVideoPath(addslashes($_POST['urlev']));
           $video->setDescricao(addslashes($_POST['descricaoev']));
           $video->setId($id);
-          if($videoDAO->alterar($video)){
+          if(!$videoDAO->alterar($video)){
             header("Location: ".BASE_URL."video/painel?alterado=exist");
           }else{
             header("Location: ".BASE_URL."video/alterar/".$id."?erro=nonexist");

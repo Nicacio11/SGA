@@ -5,14 +5,15 @@
     private $titulo;
     private $descricao;
     private $image;
-    private $tipo;
+    private $data;
     private $usuario;
 
-    public function __construct($id = null, $titulo, $descricao, $image){
+    public function __construct( $titulo, $descricao, $image , $data, $id = null){
       $this->id = ($id!=null?$id:null);
       $this->titulo = $titulo;
       $this->descricao = $descricao;
       $this->image = $image;
+      $this->data= $data;
     }
     public function getId(){
       return $this->id;
@@ -36,14 +37,14 @@
       $this->image=$image;
 
     }
+    public function setData($data){
+      $this->data= $data;
+    }
+    public function getData(){
+      return $this->data;
+    }
     public function getImage(){
       return $this->image;
-    }
-    public function setTipo($tipo){
-      $this->tipo=$tipo;
-    }
-    public function getTipo(){
-      return $this->tipo;
     }
     public function setUsuario($usuario){
         $this->usuario = $usuario;

@@ -61,7 +61,7 @@
       }
     }
     public function verificarUsuarioAdmin(){
-      if(unserialize($_SESSION['usuario'])->getActive() < 2){
+      if($_SESSION['usuario'] == null || unserialize($_SESSION['usuario'])->getActive() < 2){
         header("location: ".BASE_URL."Usuario");
       }
     }

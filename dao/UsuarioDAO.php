@@ -36,7 +36,7 @@
           $sql->bindValue(":active", $usuario->getActive());
           $sql->execute();
           $lastId = $this->db->lastInsertId();
-          
+
           $this->insertImage($lastId, $usuario->getImage());
           return true;
         }else{
@@ -139,6 +139,7 @@
       $sql->bindValue(":active", $usuario->getActive());
       $sql->bindValue(":idUsuario", $usuario->getId());
       $sql->execute();
+      $this->getToDelete($usuario->getId());
       $sqlImage = $this->db->prepare(
         "UPDATE usuario_image
         SET imagePath=:imagePath
@@ -147,11 +148,25 @@
       $sqlImage->bindValue(":imagePath", $nomedoarquivo);
       $sqlImage->bindValue(":idU", $usuario->getId());
       $sqlImage->execute();
-      
+
       move_uploaded_file($im['tmp_name'], "assets/images/usuarios/".$nomedoarquivo);
       return true;
     }catch(Exception $e){
-      return false;      
+      return false;
+    }
+  }
+  public function getToDelete($id){
+    if(isset($id)){
+      $sql = $this->db->prepare("SELECT imagePath from usuario_image Where Usuario_idUsuario=:uid");
+      $sql->bindValue(":uid", $id);
+      if($sql->execute()){
+        if($sql->rowCount()>0){
+          $dado = $sql->fetch();
+          unlink("assets/images/usuarios/".$dado['imagePath']);
+          return true;
+        }
+      }
+      return false;
     }
   }
   public function getAll($page, $perPage){

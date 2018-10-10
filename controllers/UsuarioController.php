@@ -41,11 +41,10 @@
       }
       public function painel(){
         $usuario = new Usuario();
-
         $usuario->verificarUsuarioAdmin();
         $dado = array();
-        $dado['sucesso'] = (!empty($_GET['sucesso']))?$_GET['sucesso']:''; 
-        $dado['alterado'] = (!empty($_GET['alterado']))?$_GET['alterado']:''; 
+        $dado['sucesso'] = (!empty($_GET['sucesso']))?$_GET['sucesso']:'';
+        $dado['alterado'] = (!empty($_GET['alterado']))?$_GET['alterado']:'';
 
         $usuarioDAO = new UsuarioDAO();
         $total_usuarios = $usuarioDAO->getTotal();
@@ -74,8 +73,8 @@
         $usuario = new Usuario();
         $usuario->verificarUsuarioAdmin();
         $array = array();
-        $array['erro'] = (!empty($_GET['erro']))?$_GET['erro']:''; 
-        
+        $array['erro'] = (!empty($_GET['erro']))?$_GET['erro']:'';
+
         if(
           (isset($_POST['loginadd']) && !empty(trim($_POST['loginadd']))) &&
           (isset($_POST['senhaadd']) && !empty(trim($_POST['senhaadd']))) &&
@@ -93,7 +92,7 @@
           $usuario->setImage($imagem);
 
           $usuarioDAO = new UsuarioDAO();
-          if($usuarioDAO->cadastrar($usuario)){ 
+          if($usuarioDAO->cadastrar($usuario)){
             header("Location: ". BASE_URL."usuario/painel?sucesso=exist");
           }else{
             header("Location: ". BASE_URL."usuario/adicionar?erro=exist");
@@ -117,7 +116,7 @@
           exit;
         }
         $array = array();
-        $array['erro'] = (!empty($_GET['alterado']))?$_GET['alterado']:''; 
+        $array['erro'] = (!empty($_GET['alterado']))?$_GET['alterado']:'';
         if(
           (isset($_POST['loginedit']) && !empty(trim($_POST['loginedit']))) &&
           (isset($_POST['senhaedit']) && !empty(trim($_POST['senhaedit']))) &&
@@ -135,7 +134,7 @@
           $usuario->setImage($imagem);
 
           $usuarioDAO = new UsuarioDAO();
-          
+
           if($usuarioDAO->alterar($usuario)){
             header("Location: ". BASE_URL."usuario/painel?alterado=exist");
           }else{
@@ -145,7 +144,7 @@
         }
 
         $array['usuario'] = $usuario;
-        
+
         $this->loadTemplate("usuario/UsuarioEdit",$array);
 
       }
