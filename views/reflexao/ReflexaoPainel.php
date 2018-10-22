@@ -20,7 +20,7 @@
           <br/><br/><br/>
         </div>
       </div>
-      <table class="centered highlight">
+      <table class="centered highlight tableStyle">
           <thead>
              <tr>
                  <th>Titulo</th>
@@ -34,9 +34,9 @@
                 <td><?php echo $reflexao->getTitulo(); ?></td>
                 <td><?php echo $reflexao->getData(); ?></td>
                 <td>
-                  <a href="<?php echo BASE_URL;?>reflexao/alterar/<?php echo $reflexao->getId();?>" class="btn blue waves-effect waves-light">Alterar</a>
-                  |
-                  <a href="javascript: excluirReflexao(<?php echo $reflexao->getId();?>);" class="btn red waves-effect waves-light">Apagar</a></td>
+                  <a data-position="top" data-tooltip="Alterar" href="<?php echo BASE_URL;?>reflexao/alterar/<?php echo $reflexao->getId();?>" class="btn tooltipped blue waves-effect waves-light"><i class="material-icons">edit</i></a>
+                  
+                  <a <a data-position="top" data-tooltip="Apagar" href="javascript: excluirReflexao(<?php echo $reflexao->getId();?>);" class="btn tooltipped red waves-effect waves-light"><i class="material-icons">delete</i></a></td>
               </tr>
             <?php endforeach; ?>
           </tbody>

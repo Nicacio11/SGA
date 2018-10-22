@@ -1,4 +1,9 @@
 M.AutoInit();
+$('.seletor-ancora').click(function () {
+    var alvo = $(this).attr('href').split('#').pop();
+    $('html, body').animate({scrollTop: $('#' + alvo).offset().top}, 1000);
+    return false;
+});
 var environment = "development";
 var url;
 if(environment == "development"){
@@ -49,7 +54,7 @@ $(function(){
 			indicators: true
 
 	  });
-
+		
 		$('.dropdown-trigger').dropdown();
 		$('.dropdown-trigger').dropdown('recalculateDimensions')
 
@@ -62,6 +67,21 @@ $(function(){
 			//e.preventDefault();
 			adicionarReflexao();
 		});
+		$('.moda').on('click', function(e){
+			e.preventDefault();
+			$('#modalFoto').modal('open');
+
+			var link = $(this).attr('href');
+			$.ajax({
+			url:link,
+			type:'GET',
+			success:function(html){
+				$('.fotoedit').html(html);
+			}
+		});
+
+		});
+
 		$('#atividadeadd').on('submit', function(e){
 			//e.preventDefault();
 			adicionarAtividade();
@@ -69,6 +89,14 @@ $(function(){
 		$('#atividadeedit').on('submit', function(e){
 			//e.preventDefault();
 			atualizarAtividade();
+		});
+		$('#galeriaadd').on('submit', function(e){
+			//e.preventDefault();
+			adicionarGaleria();
+		});
+		$('#galeriaedit').on('submit', function(e){
+			//e.preventDefault();
+			atualizarGaleria();
 		});
 		$('#videoadd').on('submit', function(e){
 			//e.preventDefault();
@@ -154,11 +182,41 @@ function atualizarAtividade(){
 	alert("Verifique se todas as informações estão corretas!");
 	return false;
 }
+function adicionarGaleria(){
+	var titulo =	document.getElementById('tituloag').value;
+		if( titulo.trim() != ""){
+			return true;
+		}
+	alert("Verifique se todas as informações estão corretas!");
+	return false;
+}
+function atualizarGaleria(){
+	var titulo =	document.getElementById('tituloeg').value;
+		if( titulo.trim() != ""){
+			return true;
+		}
+	alert("Verifique se todas as informações estão corretas!");
+	return false;
+}
+function excluirGaleria(id){
+	var resposta = confirm("Deseja remover esse registro, todas as fotos serão apagadas juntas?");
+
+	if(resposta == true){
+		window.location.href = url+"galeria/apagar/"+id
+	}
+}
 function excluirAtividade(id){
 	var resposta = confirm("Deseja remover esse registro?");
 
 	if(resposta == true){
 		window.location.href = url+"atividade/apagar/"+id
+	}
+}
+function excluirFoto(galeriaid, id){
+	var resposta = confirm("Deseja remover esse registro?");
+
+	if(resposta == true){
+		window.location.href = url+"galeria/apagarFoto/"+galeriaid+"/"+id
 	}
 }
 function validaimagemAddAtividade() {

@@ -1,4 +1,4 @@
-<footer class="page-footer green" >
+<footer class="page-footer green" id="pedido">
   <div class="container">
     <div class="row">
       <div class="col l6 s12">

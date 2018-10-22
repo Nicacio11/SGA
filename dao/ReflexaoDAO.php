@@ -73,6 +73,7 @@ class ReflexaoDAO extends BaseDAO{
       $image = new Image();
       $image->setImagePath($dado['imagePath']);
       $usuario->setImage($image);
+      $reflexao->setUsuario($usuario);
       return $reflexao;
     }
     return null;

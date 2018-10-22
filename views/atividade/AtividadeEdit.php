@@ -13,15 +13,15 @@
             <div class="row">
               <div class="input-field col offset-m2 m8 offset-m2">
 
-                <input required id="tituloea" name="tituloea" type="text" autocomplete="off" class="novalidate text-white">
+                <input required id="tituloea" name="tituloea" type="text" autocomplete="off" class="novalidate text-white" value="<?php echo $atividade->getTitulo()?>">
                 <label for="titulo">Titulo</label>
               </div>
               <div class="input-field col offset-m2 m8 offset-m2">
-                <input type="text" class="datepicker" id="dataPesquisaea" name="dataPesquisaaa">
+                <input type="text" class="datepicker" id="dataPesquisa" name="dataPesquisaea" value="<?php echo $atividade->getData()?>">
                 <label for="data">Data</label>
               </div>
               <div class="input-field col offset-m2 m8 offset-m2">
-                <textarea autocomplete="off" required id="descricaoea" name="descricaoea" class="materialize-textarea text-white" data-length="2000"></textarea>
+                <textarea autocomplete="off" required id="descricaoea" name="descricaoea" class="materialize-textarea text-white" data-length="2000"><?php echo $atividade->getDescricao()?></textarea>
                 <label for="descricao">Descricão</label>
               </div>
 

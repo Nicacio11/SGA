@@ -19,8 +19,8 @@
           <hr/>
           <br/><br/><br/>
         </div>
-      </div>  
-        <table class="centered highlight">
+      </div>
+        <table class="centered highlight tableStyle">
           <thead>
              <tr>
                  <th>Login</th>
@@ -36,22 +36,22 @@
                 <td><?php echo $usuario->getNome(); ?></td>
                 <td><?php echo $usuario->getActive() < 2 ? (($usuario->getActive() == 0) ? "Desativado" : "Normal") : "Admin" ?></td>
                 <td>
-                  <a href="<?php echo BASE_URL;?>usuario/alterar/<?php echo $usuario->getId();?>" class="btn blue waves-effect waves-light">Alterar</a>
-                  |
-                  <a href="javascript: desativarUsuario(<?php echo $usuario->getId();?>);" class="btn red waves-effect waves-light">Desativar</a></td>
+                  <a data-position="top" data-tooltip="Alterar" href="<?php echo BASE_URL;?>usuario/alterar/<?php echo $usuario->getId();?>" class="btn blue waves-effect waves-light tooltipped"><i class="material-icons">edit</i></a>
+
+                  <a data-position="top" data-tooltip="Apagar" href="javascript: desativarUsuario(<?php echo $usuario->getId();?>);" class="btn red waves-effect waves-light tooltipped"><i class="material-icons">delete</i></a></td>
               </tr>
             <?php endforeach; ?>
           </tbody>
         </table>
         <ul class="pagination">
-            
-            <?php 
+
+            <?php
             if($total_paginas!=1):
               for($q=1;$q<=$total_paginas;$q++): ?>
     				    <li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>usuario/painel/?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
-            <?php   
+            <?php
               endfor;
-              endif; 
+              endif;
             ?>
         </ul>
         <a class="btn green" href="<?php echo BASE_URL;?>usuario/adicionar">Adicionar usuario</a>
@@ -62,4 +62,3 @@
     </div>
   </div>
 </div>
-

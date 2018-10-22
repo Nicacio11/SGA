@@ -41,6 +41,9 @@
         //pegando os parametros
         if(count($url)>0){
           $params = $url;
+
+        }else{
+          $params = array(0);
         }
 
 

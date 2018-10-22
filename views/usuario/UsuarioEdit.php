@@ -8,7 +8,7 @@
           <div class="erro">
             Não foi possivel atualizar!
           </div>
-        <?php endif;?>  
+        <?php endif;?>
        <h5>Editar Usuário</h5>
         <div class="formAlign">
           <form id="usuarioedit" method="post" enctype="multipart/form-data">

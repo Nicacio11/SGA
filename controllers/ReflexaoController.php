@@ -107,7 +107,7 @@ class ReflexaoController extends Controller{
           exit;
         }
       }
-      header('Location:'.BASE_URL.'reflexao');
+      header('Location:'.BASE_URL.'reflexao/painel');
   }
 
 }

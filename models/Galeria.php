@@ -13,7 +13,7 @@
     $this->id=$id;
   }
   public function setTitulo($titulo){
-    $this->titulo-$titulo;
+    $this->titulo=$titulo;
   }
   public function getTitulo(){
     return $this->titulo;
@@ -23,5 +23,8 @@
   }
   public function addImage($image){
      $this->images[]=$image;
+  }
+  public function setImage($image){
+    $this->images = $image;
   }
 }

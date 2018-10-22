@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS galeria(
 
 CREATE TABLE IF NOT EXISTS galeria_image(
     idGaleria_Foto INT(10) PRIMARY KEY AUTO_INCREMENT,
-    Galera_idGaleria INT(10) not null,
+    Galeria_idGaleria INT(10) not null,
     imagePath VARCHAR(50) not null
 );
 

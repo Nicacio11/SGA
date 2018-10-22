@@ -26,6 +26,7 @@
     *Description - cadastra usuario no banco
     *@author Vitor
     *@param usuario {Usuario} - objeto usuario
+    *@return true or false
     */
     public function cadastrar($usuario){
         if( $this->usuarioExists($usuario->getUsuario()) == false){
@@ -71,6 +72,11 @@
       move_uploaded_file($im['tmp_name'], "assets/images/usuarios/".$nomedoarquivo);
 
     }
+    /**
+    * Description - pega o caminho da imagem no banco
+    * @author Vitor
+    * @param id - id da imagem
+    */
     public function getImage($id){
       $foto;
 
@@ -87,6 +93,14 @@
       }
       return null;
     }
+
+
+    /**
+    * Description - pega o usuario pelo id
+    * @author Vitor
+    * @param id - id do usuario
+    * @return {usuario}
+    */
     public function getUsuarioById($id){
 
       $usuario;
@@ -111,6 +125,11 @@
     }
     return null;
   }
+  /**
+  * Description - atualiza um usuario no banco
+  * @author Vitor
+  * @param usuario - objeto de um usuario
+  */
   public function alterar($usuario){
     try{
 
@@ -155,6 +174,11 @@
       return false;
     }
   }
+  /**
+  * Description - pega o um caminho de uma imagem e deleta na pasta
+  * @author Vitor
+  * @param id - id do usuario
+  */
   public function getToDelete($id){
     if(isset($id)){
       $sql = $this->db->prepare("SELECT imagePath from usuario_image Where Usuario_idUsuario=:uid");

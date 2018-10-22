@@ -106,8 +106,21 @@ h3{
   transition: all 2s;
   -webkit-transition:all 2s;
 }
-
-
+.tableStyle thead th {
+    cursor: auto;
+    background: #f9fafb;
+    color: rgba(0,0,0,.87);
+    padding: .92857143em .78571429em;
+    font-style: none;
+    font-weight: 700;
+    border: 1px solid rgba(34,36,38,.1);
+    
+}
+.tableStyle {
+    border: 1px solid rgba(34,36,38,.15);
+    border-radius: .28571429rem;
+    border-collapse: separate;
+}
 .img-thumbnail {
     padding: .25rem;
     background-color: #fff;

@@ -19,5 +19,10 @@
     public function setImagePath($imagePath){
       $this->imagePath=$imagePath;
     }
-
+    public function setTipo($tipo){
+      $this->tipo = $tipo;
+    }
+    public function getTipo(){
+      return $this->tipo;
+    }
   }

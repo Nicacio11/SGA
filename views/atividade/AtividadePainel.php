@@ -20,7 +20,7 @@
           <br/><br/><br/>
         </div>
       </div>
-      <table class="centered highlight">
+      <table class="centered highlight tableStyle">
           <thead>
              <tr>
                  <th>Titulo</th>
@@ -34,9 +34,9 @@
                 <td><?php echo $atividade->getTitulo(); ?></td>
                 <td><?php echo $atividade->getData(); ?></td>
                 <td>
-                  <a href="<?php echo BASE_URL;?>atividade/alterar/<?php echo $atividade->getId();?>" class="btn blue waves-effect waves-light">Alterar</a>
-                  |
-                  <a href="javascript: excluirAtividade(<?php echo $atividade->getId();?>);" class="btn red waves-effect waves-light">Apagar</a></td>
+                  <a data-position="top" data-tooltip="Alterar" href="<?php echo BASE_URL;?>atividade/alterar/<?php echo $atividade->getId();?>" class="btn tooltipped blue waves-effect waves-light"><i class="material-icons">edit</i></a>
+                  
+                  <a data-position="top" data-tooltip="Apagar" href="javascript: excluirAtividade(<?php echo $atividade->getId();?>);" class="btn tooltipped red waves-effect waves-light"><i class="material-icons">delete</i></a></td>
               </tr>
             <?php endforeach; ?>
           </tbody>

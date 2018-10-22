@@ -10,8 +10,14 @@ class HomeController extends Controller{
         $array = array();
         $reflexaoDAO = new ReflexaoDAO();
         $video = new VideoDAO();
+        $galeriaDAO = new GaleriaDAO();
+        $galeria = $galeriaDAO->getLastGaleria();
+        $atividadeDAO = new AtividadeDAO();
+  
         $array['reflexao'] = $reflexaoDAO->getLastReflexao();
         $array['video'] = $video->getLastVideo();
+        $array['galeria']= $galeriaDAO->getLastGaleria();
+        $array['atividades'] = $atividadeDAO->getLastAtividades();
         $array['erro'] = (!empty($_GET['erro']))?$_GET['erro']:'';
         $this->loadView('Home', $array);
     }
