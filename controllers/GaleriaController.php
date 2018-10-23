@@ -8,6 +8,31 @@
   class GaleriaController extends Controller{
 
       public function index(){
+      $array['procurar']= (!empty($_GET['procurar']))?$_GET['procurar']:''; 
+      $galeriaDAO = new GaleriaDAO();
+
+      $total_galerias = $galeriaDAO->getTotal();
+
+      //iniciando a paginação
+      $p = 1;
+      if(isset($_GET['p']) && !empty($_GET['p'])) {
+       $p = addslashes($_GET['p']);
+     }
+
+     $por_pagina = 10;
+     $total_paginas = ceil($total_galerias / $por_pagina);
+     if($array['procurar']){
+        $galerias = $galeriaDAO->getGaleriasLike($array['procurar'], $p, $por_pagina);
+        $total_paginas=1;
+      }else{
+       $galerias = $galeriaDAO->getGalerias($p, $por_pagina);      
+      }
+     $array['galerias'] = $galerias;
+     $array['total_galerias'] = $total_paginas;
+     $array['total_paginas'] = $total_paginas;
+     $array['p']=$p;
+      
+      $this->loadView('galeria/GaleriaIndex', $array);
 
       }
 

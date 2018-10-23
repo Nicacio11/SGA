@@ -44,6 +44,31 @@ class VideoDAO extends BaseDAO{
       return $videos;
     }
   }
+  public function getVideosLike($like, $page, $perPage){
+    $offset = ($page - 1) * $perPage;
+
+    $videos = array();
+    $sql= $this->db->prepare("SELECT idVideo, titulo, descricao, url, usuario.nome
+     FROM video
+     INNER JOIN usuario on usuario.idUsuario=video.Usuario_idUsuario
+     WHERE video.titulo LIKE ''%$like%;");
+    $sql->execute();
+
+    if($sql->rowCount()>0){
+      foreach($sql->fetchAll() as $vid){
+        $video = new Video();
+        $video->setTitulo($vid['titulo']);
+        $video->setDescricao($vid['descricao']);
+        $video->setId($vid['idVideo']);
+        $video->setVideoPath($vid['url']);
+        $usuario = new Usuario();
+        $usuario->setNome($vid['nome']);
+        $video->setUsuario($usuario);
+        $videos[] =$video;
+      }
+      return $videos;
+    }
+  }
   public function getLastVideo(){
     $video;
     $sql = $this->db->prepare("SELECT idVideo,

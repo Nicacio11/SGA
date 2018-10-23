@@ -7,6 +7,37 @@
         <blockquote style="border-color:#fff;">
           “Vocês, Renovação Carismática, receberam um grande presente do Senhor. Vocês nasceram de um desejo do Espírito Santo como “uma corrente de graça” na Igreja e para a Igreja. É isto que os define: “uma corrente de graça”."Papa Francisco"
         </blockquote>
+        <h5>Ache - nos</h5>
+        <div style="max-width: : 640px; height: 400px" id="mapContainer"></div>
+          <script>
+            // Initialize the platform object:
+            var platform = new H.service.Platform({
+            'app_id': 'm5kaaGNhJM8TCnucqZwT',
+            'app_code': 'pQgOrxlO9yg4NtNNW-inkA'
+            });
+              var svgMarkup = '<svg width="24" height="24" ' +
+  'xmlns="http://www.w3.org/2000/svg">' +
+  '<rect stroke="white" fill="#1b468d" x="1" y="1" width="22" ' +
+  'height="22" /><text x="12" y="18" font-size="12pt" ' +
+  'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
+  'fill="white">H</text></svg>';
+var icon = new H.map.Icon(svgMarkup),
+  coords = {lat: -12.902231, lng: -38.403316},
+  marker = new H.map.Marker(coords, {icon: icon});
+            // Obtain the default map types from the platform object
+            var maptypes = platform.createDefaultLayers();
+
+            // Instantiate (and display) a map object:
+            var map = new H.Map(
+            document.getElementById('mapContainer'),
+            maptypes.normal.map,
+            {
+              zoom: 10,
+              center: { lng: 13.4, lat: 52.51 }
+            });
+            map.addObject(marker);
+            map.setCenter(coords);
+          </script>
       </div>
       <div class="col l4 offset-l2 s12">
         <h5 class="white-text">Faça seu pedido de oração</h5>

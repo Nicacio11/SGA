@@ -20,7 +20,10 @@
 			<meta property="og:description" content="Acompanhe-nos" />
 			<meta property="og:image" content="<?php echo BASE_URL;?>assets/images/retiro" />
 
-
+			<script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+			  type="text/javascript" charset="utf-8"></script>
+			<script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+			  type="text/javascript" charset="utf-8"></script>
 		</head>
 	<body class="fadeIn">
 			<?php
@@ -49,7 +52,7 @@
 							        <p class="white-text" style="white-space: normal"><?php echo substr($atividade->getDescricao(), 0,350);?>...</p>
 						        </div>
 						      </div></a>
-						      <?php endforeach ?>
+						      <?php endforeach ;?>
 					    	</div>
 					    </div>
 					    	<?php else:?>
@@ -201,7 +204,7 @@
 						
 							<br/>
 							<div class="vermais">
-								<a href="#" class="waves-effect waves-dark">Ver mais...</a>
+								<a href="?php echo BASE_URL ;?>galeria" class="waves-effect waves-dark">Ver mais...</a>
 							</div>
 					<?php else :?>
 						<div class="row">
@@ -225,7 +228,7 @@
 									</div>
 									<br/>
 									<div class="vermais">
-										<a href="#" class="waves-effect waves-dark">Ver mais...</a>
+										<a href="?php echo BASE_URL ;?>video" class="waves-effect waves-dark">Ver mais...</a>
 									</div>
 								<?php else :?>
 									<div class="row">

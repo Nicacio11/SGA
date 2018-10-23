@@ -4,12 +4,53 @@ class ReflexaoController extends Controller{
   private $reflexaoDAO;
 
   public function ReflexaoController(){
-    $usuario = new Usuario();
-    $usuario->verificarUsuario();
-  }
-  public function index(){
 
   }
+  public function index(){
+     $array['procurar']= (!empty($_GET['procurar']))?$_GET['procurar']:''; 
+      $reflexaoDAO = new ReflexaoDAO();
+
+      $total_reflexoes = $reflexaoDAO->getTotal();
+
+      //iniciando a paginação
+      $p = 1;
+      if(isset($_GET['p']) && !empty($_GET['p'])) {
+       $p = addslashes($_GET['p']);
+     }
+
+     $por_pagina = 10;
+     $total_paginas = ceil($total_reflexoes / $por_pagina);
+     if($array['procurar']){
+        $reflexoes = $reflexaoDAO->getReflexoesLike($array['procurar'], $p, $por_pagina);
+        $total_paginas=1;
+      }else{
+       $reflexoes = $reflexaoDAO->getReflexoes($p, $por_pagina);      
+      }
+     $array['reflexoes'] = $reflexoes;
+     $array['total_reflexoes'] = $total_paginas;
+     $array['total_paginas'] = $total_paginas;
+     $array['p']=$p;
+      
+      $this->loadView('reflexao/ReflexaoIndex', $array);
+
+  }
+  public function reflexaoDetails($id){
+      $array = array();
+      if(isset($id) && $id != 0){
+          $reflexaoDAO = new ReflexaoDAO();
+          $reflexao = $reflexaoDAO->getReflexao($id);
+          $reflexao->setData($data = date('d/m/Y', strtotime($reflexao->getData())));
+          $array['reflexao'] = $reflexao;
+          if(!empty($array['reflexao'])){
+            $this->loadView('reflexao/ReflexaoDetails', $array);
+            exit;
+          }
+        }
+          header("Location: ".BASE_URL."reflexao");
+          exit; 
+
+      }
+
   public function painel(){
     $usuario = new Usuario();
     $usuario->verificarUsuario();

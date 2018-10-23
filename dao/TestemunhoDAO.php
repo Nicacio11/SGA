@@ -55,6 +55,37 @@
           return $testemunhos;
         }
       }
+      public function getTestemunhosLike($like ,$page, $perPage){
+        $offset = ($page - 1) * $perPage;
+
+        $testemunhos = array();
+        $sql= $this->db->prepare("SELECT testemunho.idTestemunho,
+           testemunho.email,
+           testemunho.descricao,
+           testemunho.nome as testemunhoPessoa,
+           usuario.nome as usuarionome
+           FROM testemunho
+           INNER JOIN usuario on usuario.idUsuario=testemunho.Usuario_idUsuario
+           WHERE testemunho.nome LIKE '%$like%'
+           ;");
+        $sql->execute();
+
+        if($sql->rowCount()>0){
+          foreach($sql->fetchAll() as $test){
+            $testemunho = new Testemunho();
+            $testemunho->setEmail($test['email']);
+            $testemunho->setDescricao($test['descricao']);
+            $testemunho->setId($test['idTestemunho']);
+            $testemunho->setNome($test['testemunhoPessoa']);
+            $usuario = new Usuario();
+            $usuario->setNome($test['usuarionome']);
+            $testemunho->setUsuario($usuario);
+            $testemunhos[] =$testemunho;
+          }
+          return $testemunhos;
+        }
+      }
+
       public function getTestemunho($id){
         $testemunho;
         $sql = $this->db->prepare("SELECT idTestemunho, nome, email, descricao FROM testemunho WHERE idTestemunho=:id");

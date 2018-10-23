@@ -6,7 +6,34 @@
 
       }
       public function index(){
+      $array['procurar']= (!empty($_GET['procurar']))?$_GET['procurar']:''; 
+      
+      $testemunhoDAO = new TestemunhoDAO();
 
+      $total_testemunhos = $testemunhoDAO->getTotal();
+
+      //iniciando a paginação
+      $p = 1;
+      if(isset($_GET['p']) && !empty($_GET['p'])) {
+       $p = addslashes($_GET['p']);
+     }
+
+     $por_pagina = 10;
+     $total_paginas = ceil($total_testemunhos / $por_pagina);
+     $total_paginas=1;
+           
+      if($array['procurar']){
+        $testemunhos = $testemunhoDAO->getTestemunhosLike($array['procurar'], $p, $por_pagina);
+        $total_paginas=1;
+      }else{
+       $testemunhos = $testemunhoDAO->getTestemunhos($p, $por_pagina);      
+      }
+     $array['testemunhos'] = $testemunhos;
+     $array['total_testemunhos'] = $total_paginas;
+     $array['total_paginas'] = $total_paginas;
+     $array['p']=$p;
+      
+      $this->loadView('testemunho/TestemunhoIndex', $array);
       }
       public function painel(){
         $usuario = new Usuario();

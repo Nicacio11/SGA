@@ -15,10 +15,10 @@
       <!--Otimização para mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<meta charset="utf-8">
-			<meta property="og:url" content="www.mensageirosdeemanuel.com.br" />
-			<meta property="og:title" content="Atividades do Grupo de Oração Mensageiros de Emanuel" />
+			<meta property="og:url" content="<?php echo BASE_URL?>reflexao" />
+			<meta property="og:title" content="Reflexões" />
 			<meta property="og:description" content="Acompanhe-nos" />
-			<meta property="og:image" content="<?php echo BASE_URL;?>assets/images/retiro" />
+			<meta property="og:image" content="<?php echo BASE_URL;?>assets/images/praying2.jpg" />
 <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
   type="text/javascript" charset="utf-8"></script>
 <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
@@ -30,19 +30,19 @@
 		require_once ( 'views/components/Header.php' );?>
 		
 		<div class="container">
-			<h2>Atividades</h2>
+			<h2>Reflexões</h2>
 			<hr/>
 			<br/>
 			<br/>
 			<br/>
 			<div class="row">
 				
-					    <?php if(!empty($atividades)):?>
+					    <?php if(!empty($reflexoes)):?>
 					    	<form>
 								<div class="container">
 									<div class="input-field col s12 m8">
 								      <input id="procurar" name="procurar" type="search" required class="validate" placeholder="Digite o titulo">
-								      <label class="active" for="procurar">Filtrar Atividade</label>
+								      <label class="active" for="procurar">Filtrar Reflexao</label>
 								    </div>
 								    <div class="input-field col s12 m4">
 								      <input type="submit" value="Pesquisar" class="btn">
@@ -54,31 +54,13 @@
 								    <br/>
 							        <br/>
 							        <br/><br/>
-							<?php foreach($atividades as $atividade): ?>
-				                 <div class="col s12 m12">
-								    <div class="card horizontal z-depth-3">
-								      <div class="card-image">
-								        <img style="width: 150px;" src="<?php echo BASE_URL;?>assets/images/atividades/<?php echo $atividade->getImage()->getImagePath();?>">
-								      </div>
-								      <div class="card-stacked">
-								        <div class="card-content" style="word-wrap: break-word;">
-								          <p><?php echo substr($atividade->getDescricao(), 0,50); ?>.</p>
-								        </div>
-								        <div class="card-action">
-								        	<div class="row">
-								        		<div class="col s12 m6">
-										          <a href="<?php echo BASE_URL?>atividade/AtividadeDetails/<?php echo $atividade->getId();?>"><?php echo $atividade->getTitulo(); ?></a>								        			
-								        		</div>
-								        		<div class="col s12 m6">
-												    <p style="display: inline-block">Data: <?php echo $atividade->getData();?></p>
-								        		</div>
-								        	</div>
-
-								        </div>
-								      </div>
-								    </div>
-								  </div>
-				            <?php endforeach; ?>
+							        <div class="collection">
+									   <?php foreach($reflexoes as $reflexao): ?>
+										   <a href="<?php echo BASE_URL;?>reflexao/ReflexaoDetails/<?php echo $reflexao->getId()?>" class="collection-item"><span class="badge"><?php echo date('d/m/Y', strtotime($reflexao->getData()));?></span><?php echo $reflexao->getTitulo();?></a>
+				            		   <?php endforeach; ?>
+									</div>
+            
+							
 				            <br/>
 				            <br/>
 				            <div class="container" style="text-align: center;">
@@ -86,7 +68,7 @@
 						        <?php
 						            if($total_paginas!=1):
 						              for($q=1;$q<=$total_paginas;$q++): ?>
-						    				    <li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>atividade/index/?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
+						    				    <li class="waves-effect waves-dark <?php echo ($p==$q)?'active':''; ?>"><a href="<?php echo BASE_URL;?>reflexao/index/?p=<?php echo $q; ?>"><?php echo $q; ?></a></li>
 						         <?php
 						              endfor;
 						              endif;
@@ -96,7 +78,7 @@
 					       
 						<?php else:?>
 							<div class="center-align">
-								<p class="black-text">Não foi encontrado atividades</p>							
+								<p class="black-text">Não foi encontrado reflexoes</p>							
 							</div>
 						<?php endif;?>  
 					</div>

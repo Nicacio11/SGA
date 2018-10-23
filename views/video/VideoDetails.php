@@ -15,15 +15,16 @@
       <!--Otimização para mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<meta charset="utf-8">
-			<meta property="og:url" content="www.mensageirosdeemanuel.com.br" />
-			<meta property="og:title" content="Atividades do Grupo de Oração Mensageiros de Emanuel" />
-			<meta property="og:description" content="Acompanhe-nos" />
-			<meta property="og:image" content="<?php echo BASE_URL;?>assets/images/retiro" />
-<script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
-  type="text/javascript" charset="utf-8"></script>
-<script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
-  type="text/javascript" charset="utf-8"></script>
+			<meta property="og:url" content="<?php echo BASE_URL?>videoDetails/<?php echo $video->getId()?>" />
+			<meta property="og:title" content="<?php echo $video->getTitulo()?>" />
+			<meta property="og:description" content="<?php echo $video->getDescricao()?>" />
+			<meta property="og:image" content="<?php echo BASE_URL;?>assets/images/praying2.jpg" />
+			<meta property="og:image" content="<?php echo $video->getVideoPath();?>" />
 
+			<script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+			  type="text/javascript" charset="utf-8"></script>
+			<script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+			  type="text/javascript" charset="utf-8"></script>
 		</head>
 	<body class="fadeIn">
 		<?php
@@ -32,34 +33,19 @@
 		<div class="container"  >
 			<div style="margin-bottom: 70px;">
 				<br>
-				<h2><?php echo $atividade->getTitulo();?></h2>
+				<h2><?php echo $video->getTitulo();?></h2>
 				<hr>			
 			</div>
 					
 			<div class="pan">
-				<div class="row">
-					<div class="col s4">
-						<img  class="responsive-img" 
-					
-					src="<?php echo BASE_URL?>assets/images/atividades/<?php echo $atividade->getImage()->getImagePath();?>">
+					<div class="video-container">
+						<iframe class="responsive-video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen
+							src="<?php echo $video->getVideoPath(); ?>">
+						</iframe>
 					</div>
-					<div class="col s8">
-						<p>
-							<?php echo $atividade->getDescricao();?>
-						</p>
-						<p>Data: <?php echo $atividade->getData();?></p>
-						
-						<div class="row valign-wrapper">
-							<div class="chip">
-							  <img src="<?php echo BASE_URL; ?>/assets/images/usuarios/<?php echo $atividade->getUsuario()->getImage()->getImagePath();?>"
-							  alt="Contact Person">
-							  <?php echo $atividade->getUsuario()->getNome();?>
-							</div>
-
-						</div> 
-					</div>
-					
-				</div>
+					<blockquote>
+						<?php echo $video->getDescricao()?>
+					</blockquote>
 			</div>
 	  	</div>
  

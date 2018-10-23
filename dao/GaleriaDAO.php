@@ -34,10 +34,45 @@
           $galeria = new Galeria();
           $galeria->setTitulo($activity['titulo']);
           $galeria->setId($activity['idGaleria']);
+          $galeria->setImage($this->getImage($galeria->getId()));
           $array[] = $galeria;
         }
         return $array;
       }
+      public function getGaleriasLike($like ,$page, $perPage){
+      $offset = ($page - 1) * $perPage;
+
+      $array = array();
+
+        $sql = $this->db->prepare("SELECT idGaleria, titulo
+        FROM galeria
+        WHERE galeria.titulo LIKE '%$like%' ORDER BY idGaleria DESC;
+        ");
+        $sql->execute();
+
+        foreach ($sql->fetchAll() as $activity) {
+          $galeria = new Galeria();
+          $galeria->setTitulo($activity['titulo']);
+          $galeria->setId($activity['idGaleria']);
+          $galeria->setImage($this->getImage($galeria->getId()));
+          $array[] = $galeria;
+        }
+        return $array;
+      }
+    public function getImage($id){
+      $array = array();
+      $sql = $this->db->prepare("SELECT imagePath FROM galeria_image WHERE Galeria_idGaleria=$id");
+      $sql->execute();
+      if($sql->rowCount()>0){
+        foreach ($sql->fetchAll() as $foto) {
+          $image = new Image();
+          $image->setImagePath($foto['imagePath']);
+          $array[] = $image;
+        }
+      }
+      return $array;
+
+    }
     public function getLastGaleria(){
       $galeria = new Galeria();
       $sql = $this->db->prepare("SELECT galeria.titulo, galeria.idGaleria 
@@ -70,28 +105,7 @@
         }
         return $array;
     }
-    public function getGaleriasAll($page, $perPage){
-      $offset = ($page - 1) * $perPage;
 
-      $array = array();
-
-        $sql = $this->db->prepare("SELECT DISTINCT(galeria.idGaleria), galeria.titulo, galeria_image.imagePath
-        FROM galeria
-        INNER JOIN galeria_image ON galeria_image.Galera_idGaleria = galeria.idGaleria
-        ORDER BY idGaleria DESC LIMIT $offset, $perPage;
-        ");
-        $sql->execute();
-
-        foreach ($sql->fetchAll() as $activity) {
-          $image = new Image();
-          $image->setImagePath($activity['imagePath']);
-          $galeria = new Galeria();
-          $galeria->setTitulo($activity['titulo']);
-          $galeria->setId($activity['idGaleria']);
-          $galeria->addImage($image);
-        }
-        return $array;
-      }
       public function getGaleria($id){
         $sql= $this->db->prepare("SELECT idGaleria, titulo FROM galeria WHERE idGaleria=:id");
         $sql->bindValue(":id", $id);

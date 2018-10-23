@@ -54,6 +54,7 @@ $(function(){
 			indicators: true
 
 	  });
+	 $('.carousel').carousel();
 		
 		$('.dropdown-trigger').dropdown();
 		$('.dropdown-trigger').dropdown('recalculateDimensions')

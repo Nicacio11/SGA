@@ -1,3 +1,6 @@
+appid - m5kaaGNhJM8TCnucqZwT
+appcode -pQgOrxlO9yg4NtNNW-inkA
+
 CREATE DATABASE sga CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 USE sga;

@@ -6,8 +6,53 @@
 
       }
       public function index(){
+        $array['procurar']= (!empty($_GET['procurar']))?$_GET['procurar']:''; 
+        $videoDAO = new VideoDAO();
+
+        $total_videos = $videoDAO->getTotal();
+
+        //iniciando a paginação
+        $p = 1;
+        if(isset($_GET['p']) && !empty($_GET['p'])) {
+         $p = addslashes($_GET['p']);
+       }
+
+       $por_pagina = 10;
+       $total_paginas = ceil($total_videos / $por_pagina);
+       if($array['procurar']){
+          $videos = $videoDAO->getVideosLike($array['procurar'], $p, $por_pagina);
+          $total_paginas=1;
+        }else{
+         $videos = $videoDAO->getVideos($p, $por_pagina);      
+        }    
+
+
+       $array['videos'] = $videos;
+       $array['total_videos'] = $total_paginas;
+       $array['total_paginas'] = $total_paginas;
+       $array['p']=$p;
+      
+      $this->loadView('video/VideoIndex', $array);
 
       }
+  public function videoDetails($id){
+      $array = array();
+      if(isset($id) && $id != 0){
+          $videoDAO = new VideoDAO();
+          $video = $videoDAO->getVideo($id);
+          $array['video'] = $video;
+         // print_r($array);
+          if(!empty($array['video'])){
+
+            $this->loadView('video/VideoDetails', $array);
+            exit;
+          }
+        }
+          header("Location: ".BASE_URL."video");
+          exit; 
+
+      }
+
       public function painel(){
         $usuario = new Usuario();
         $usuario->verificarUsuario();

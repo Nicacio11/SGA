@@ -49,6 +49,33 @@ class ReflexaoDAO extends BaseDAO{
       return $reflexoes;
     }
   }
+  public function getReflexoesLike($like, $page, $perPage){
+    $offset = ($page - 1) * $perPage;
+
+    $reflexoes = array();
+    $sql= $this->db->prepare("SELECT
+      idReflexao,
+      titulo,
+      data,
+      corpo,
+      Usuario_idUsuario FROM reflexao 
+      WHERE reflexao.titulo LIKE '%$like%'
+      ORDER BY idReflexao DESC;");
+    $sql->execute();
+
+    if($sql->rowCount()>0){
+      foreach($sql->fetchAll() as $reflex){
+        $reflexao = new Reflexao($reflex['titulo'], $reflex['corpo']);
+        $reflexao->setId($reflex['idReflexao']);
+        $reflexao->setData($reflex['data']);
+        $usuario = new Usuario();
+        $usuario->setId($reflex['Usuario_idUsuario']);
+        $reflexao->setUsuario($usuario);
+        $reflexoes[] =$reflexao;
+      }
+      return $reflexoes;
+    }
+  }
   public function getLastReflexao(){
     $reflexao;
     $sql = $this->db->prepare("SELECT
@@ -80,7 +107,9 @@ class ReflexaoDAO extends BaseDAO{
   }
   public function getReflexao($id){
     $reflexao;
-    $sql = $this->db->prepare("SELECT idReflexao, titulo, data, corpo, Usuario_idUsuario FROM reflexao WHERE idReflexao=:id");
+    $sql = $this->db->prepare("SELECT idReflexao, titulo, data, corpo, reflexao.Usuario_idUsuario, usuario.nome, usuario_image.imagePath FROM reflexao 
+    INNER JOIN usuario on reflexao.Usuario_idUsuario = usuario.idUsuario
+    INNER JOIN usuario_image on usuario.idUsuario = usuario_image.Usuario_idUsuario WHERE reflexao.idReflexao=:id");
     $sql->bindValue("id", $id);
     $sql->execute();
 
@@ -91,6 +120,10 @@ class ReflexaoDAO extends BaseDAO{
       $reflexao->setData($dado['data']);
       $usuario = new Usuario();
       $usuario->setId($dado['Usuario_idUsuario']);
+      $usuario->setNome($dado['nome']);
+      $image = new Image();
+      $image->setImagePath($dado['imagePath']);
+      $usuario->setImage($image);
       $reflexao->setUsuario($usuario);
       return $reflexao;
     }
