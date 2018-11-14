@@ -38,7 +38,7 @@
                 <td>
                   <a data-position="top" data-tooltip="Alterar" href="<?php echo BASE_URL;?>usuario/alterar/<?php echo $usuario->getId();?>" class="btn blue waves-effect waves-light tooltipped"><i class="material-icons">edit</i></a>
 
-                  <a data-position="top" data-tooltip="Apagar" href="javascript: desativarUsuario(<?php echo $usuario->getId();?>);" class="btn red waves-effect waves-light tooltipped"><i class="material-icons">delete</i></a></td>
+                  <a data-position="top" data-tooltip="Desativar" href="javascript: desativarUsuario(<?php echo $usuario->getId();?>);" class="btn grey waves-effect waves-light tooltipped"><i class="material-icons">remove</i></a></td>
               </tr>
             <?php endforeach; ?>
           </tbody>

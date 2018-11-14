@@ -58,7 +58,7 @@
 				                 <div class="col s12 m12">
 								    <div class="card horizontal z-depth-3">
 								      <div class="card-image">
-								        <img style="width: 150px;" src="<?php echo BASE_URL;?>assets/images/atividades/<?php echo $atividade->getImage()->getImagePath();?>">
+								        <img style="width: 150px;height: 145px;" src="<?php echo BASE_URL;?>assets/images/atividades/<?php echo $atividade->getImage()->getImagePath();?>">
 								      </div>
 								      <div class="card-stacked">
 								        <div class="card-content" style="word-wrap: break-word;">
@@ -66,12 +66,8 @@
 								        </div>
 								        <div class="card-action">
 								        	<div class="row">
-								        		<div class="col s12 m6">
-										          <a href="<?php echo BASE_URL?>atividade/AtividadeDetails/<?php echo $atividade->getId();?>"><?php echo $atividade->getTitulo(); ?></a>								        			
-								        		</div>
-								        		<div class="col s12 m6">
-												    <p style="display: inline-block">Data: <?php echo $atividade->getData();?></p>
-								        		</div>
+										          <a href="<?php echo BASE_URL?>atividade/AtividadeDetails/<?php echo $atividade->getId();?>"><?php echo $atividade->getTitulo(); ?> - <?php echo date('d/m/Y',strtotime($atividade->getData()));?></a>								        			
+								        		
 								        	</div>
 
 								        </div>

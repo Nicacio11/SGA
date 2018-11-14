@@ -34,14 +34,14 @@ CREATE TABLE IF NOT EXISTS video(
 );
 
 
-CREATE TABLE IF NOT EXISTS testemunho(
-    idTestemunho INT(10) PRIMARY KEY AUTO_INCREMENT,
-    Usuario_idUsuario INT(10) not null,
-    email VARCHAR(50) not null,
-    descricao VARCHAR(2000) not null,
-    nome VARCHAR(30) not null,
-    --FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
-);
+  CREATE TABLE IF NOT EXISTS testemunho(
+      idTestemunho INT(10) PRIMARY KEY AUTO_INCREMENT,
+      Usuario_idUsuario INT(10) not null,
+      email VARCHAR(50) not null,
+      descricao VARCHAR(2000) not null,
+      nome VARCHAR(30) not null,
+      --FOREIGN KEY(Usuario_idUsuario) REFERENCES usuario(idUsuario)
+  );
 
 
 CREATE TABLE IF NOT EXISTS reflexao(

@@ -74,15 +74,15 @@
         $usuario->verificarUsuarioAdmin();
         $array = array();
         $array['erro'] = (!empty($_GET['erro']))?$_GET['erro']:'';
-
+        print_r($_POST);
+        print_r($_FILES);
         if(
           (isset($_POST['loginadd']) && !empty(trim($_POST['loginadd']))) &&
           (isset($_POST['senhaadd']) && !empty(trim($_POST['senhaadd']))) &&
           (isset($_POST['nomeadd']) && !empty(trim($_POST['nomeadd']))) &&
-          (isset($_POST['activeadd']) && !empty(trim($_POST['activeadd']))) &&
+          (isset($_POST['activeadd'])) &&
           (isset($_FILES['imagemUsuario']['tmp_name']))
         ){
-
           $usuario->setUsuario(addslashes($_POST['loginadd']));
           $usuario->setSenha(md5(addslashes($_POST['senhaadd'])));
           $usuario->setNome(addslashes($_POST['nomeadd']));
@@ -94,8 +94,10 @@
           $usuarioDAO = new UsuarioDAO();
           if($usuarioDAO->cadastrar($usuario)){
             header("Location: ". BASE_URL."usuario/painel?sucesso=exist");
+            exit;
           }else{
             header("Location: ". BASE_URL."usuario/adicionar?erro=exist");
+            exit;
           }
           exit;
         }
@@ -121,7 +123,7 @@
           (isset($_POST['loginedit']) && !empty(trim($_POST['loginedit']))) &&
           (isset($_POST['senhaedit']) && !empty(trim($_POST['senhaedit']))) &&
           (isset($_POST['nomeedit']) && !empty(trim($_POST['nomeedit']))) &&
-          (isset($_POST['activeedit']) && !empty(trim($_POST['activeedit']))) &&
+          (isset($_POST['activeedit'])) &&
           (isset($_FILES['imagemUsuarioEdit']['tmp_name']))
         ){
           $usuario->setId(addslashes($id));

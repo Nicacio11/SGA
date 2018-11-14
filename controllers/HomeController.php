@@ -19,27 +19,33 @@ class HomeController extends Controller{
         $array['galeria']= $galeriaDAO->getLastGaleria();
         $array['atividades'] = $atividadeDAO->getLastAtividades();
         $array['erro'] = (!empty($_GET['erro']))?$_GET['erro']:'';
+        if(isset($_POST['descricao']) && !empty('$_descricao')){
+            $mensagem = new Mensagem();
+            $mensagem->setEmail(addslashes((isset($_POST['email'])?$_POST['email']:'Sem email')));
+            $mensagem->setNome(addslashes((isset($_POST['nome'])?$_POST['nome']:'Sem nome')));
+            $mensagem->setDescricao(addslashes($_POST['descricao'])."\nNome: ". $mensagem->getNome()."\nEmail: ".$mensagem->getEmail());
+            
+            $mensagem->send("Pedido de Oração");
+              header("Location :".BASE_URL."Home?erro=nonexist");
+              exit;
+                
+            }
         $this->loadView('Home', $array);
     }
-    public function atividades(){
-
-    }
-    public function nada(){
-
-    }
+    
     public function enviarPedido(){
       if(isset($_POST['descricao']) && !empty('$_descricao')){
             $mensagem = new Mensagem();
             $mensagem->setEmail(addslashes((isset($_POST['email'])?$_POST['email']:'Sem email')));
             $mensagem->setNome(addslashes((isset($_POST['nome'])?$_POST['nome']:'Sem nome')));
-            $mensagem->setDescricao(addslashes($_POST['descricao']));
-            $array['tipo'] = "Pedido de Oração";
-            if($mensagem->send($array)){
+            $mensagem->setDescricao(addslashes($_POST['descricao'])."\nNome: ". $mensagem->getNome()."\nEmail: ".$mensagem->getEmail());
+            
+            $mensagem->send("Pedido de Oração");
               header("Location :".BASE_URL."Home?erro=nonexist");
-            }else{
-              header("Location :".BASE_URL."Home?erro=exist");
+              exit;
+                
             }
-
+              header("Location :".BASE_URL."Home");
+            exit;
       }
-    }
 }

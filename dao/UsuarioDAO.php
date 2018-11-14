@@ -5,7 +5,7 @@
     public function autenticar($user, $pass){
 
       $usuario;
-      $sql = $this->db->prepare("SELECT idUsuario, login, nome, active FROM usuario WHERE login=:usuario AND senha=:senha");
+      $sql = $this->db->prepare("SELECT idUsuario, login, nome, active FROM usuario WHERE login=:usuario AND senha=:senha AND active <> 0 ");
       $sql->bindValue(":usuario", $user);
       $sql->bindValue(":senha", md5($pass));
       $sql->execute();

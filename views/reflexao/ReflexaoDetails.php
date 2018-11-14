@@ -38,10 +38,18 @@
 					
 			<div class="pan">
 					<div class="container">
-						<div class="video-container">
-							<iframe class="responsive-video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen
-								src="<?php echo $video->getVideoPath(); ?>">
-							</iframe>
+						<blockquote>
+							<?php echo $reflexao->getCorpo(); ?>
+						</blockquote>
+							<?php echo $reflexao->getData(); ?>
+
+						</div>
+						<div class="right-align">
+							<div class="chip">
+							  <img src="<?php echo BASE_URL; ?>/assets/images/usuarios/<?php echo $reflexao->getUsuario()->getImage()->getImagePath();?>"
+							  alt="Contact Person">
+							  <?php echo $reflexao->getUsuario()->getNome();?>
+							</div>
 						</div>
 					</div>
 			</div>

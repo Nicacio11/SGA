@@ -245,7 +245,7 @@
     }
     public function getLastAtividades(){
       $array;
-      $sql = $this->db->prepare("SELECT atividade.titulo,
+      $sql = $this->db->prepare("SELECT atividade.idAtividade, atividade.titulo,
         atividade.descricao,
         atividade.data,
         atividade_image.imagePath as imagemAtividade,
@@ -267,6 +267,7 @@
               $image,
               $data['data']
             );
+            $atividade->setId($data['idAtividade']);
             $array[]=$atividade;
             }
             

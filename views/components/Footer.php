@@ -7,8 +7,9 @@
         <blockquote style="border-color:#fff;">
           “Vocês, Renovação Carismática, receberam um grande presente do Senhor. Vocês nasceram de um desejo do Espírito Santo como “uma corrente de graça” na Igreja e para a Igreja. É isto que os define: “uma corrente de graça”."Papa Francisco"
         </blockquote>
-        <h5>Ache - nos</h5>
-        <div style="max-width: : 640px; height: 400px" id="mapContainer"></div>
+        <h5 class="center-align">Ache - nos</h5>
+        <img class="responsive-img" src="<?php echo BASE_URL;?>assets/images/map.png">
+        <!--<div style="max-width: : 640px; height: 400px" id="mapContainer"></div>
           <script>
             // Initialize the platform object:
             var platform = new H.service.Platform({
@@ -21,7 +22,7 @@
   'height="22" /><text x="12" y="18" font-size="12pt" ' +
   'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
   'fill="white">H</text></svg>';
-var icon = new H.map.Icon(svgMarkup),
+var icon = new H.map.Icon('<?php echo BASE_URL?>assets/images/church-128.png'),
   coords = {lat: -12.902231, lng: -38.403316},
   marker = new H.map.Marker(coords, {icon: icon});
             // Obtain the default map types from the platform object
@@ -32,31 +33,35 @@ var icon = new H.map.Icon(svgMarkup),
             document.getElementById('mapContainer'),
             maptypes.normal.map,
             {
-              zoom: 10,
+              zoom: 19,
               center: { lng: 13.4, lat: 52.51 }
             });
             map.addObject(marker);
             map.setCenter(coords);
-          </script>
+          </script>-->
+          <br/>
+          Endereço :<br/>
+          Estrada do Coqueiro Grande, 1210 Fazenda Grande II - 41342-165
       </div>
       <div class="col l4 offset-l2 s12">
         <h5 class="white-text">Faça seu pedido de oração</h5>
         <div class="row">
-            <form class="col m12" method="post" action="<?php echo BASE_URL; ?>home/enviarPedido">
-              <div class="">
+          <div>
+            <form class="col m12" method="post" action="<?php echo BASE_URL; ?>Home/enviarPedido">
+              <div class="center-align" id="ped">
                 <div class="container">
                   <div class="input-field">
-                    <input id="nome" type="text" class="validate">
+                    <input name="nomePedido" type="text" class="validate">
                     <label for="nome">Nome</label>
                   </div>
 
                   <div class="input-field">
-                    <input id="email" type="email" class="validate">
+                    <input name="emailPedido" type="email" class="validate">
                     <label for="email">Email</label>
                   </div>
                   <div class="input-field">
                     <textarea autocomplete="off" required id="descricao" name="descricao" class="materialize-textarea text-white"></textarea>
-                    <label for="descricao">Descricão</label>
+                    <label for="descricaoPedido">Descricão</label>
                   </div>
                   <div class="input-field">
                     <input class="btn carousel-background waves-effect waves-light"  type="submit" value="Enviar">
@@ -66,6 +71,8 @@ var icon = new H.map.Icon(svgMarkup),
 
             </form>
           </div>
+            
+        </div>
 
       </div>
     </div>

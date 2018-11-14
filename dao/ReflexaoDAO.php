@@ -84,6 +84,7 @@ class ReflexaoDAO extends BaseDAO{
       reflexao.data,
       reflexao.corpo,
       usuario.nome,
+      usuario_image.idUsuario_image,
       usuario_image.imagePath FROM reflexao
       INNER JOIN usuario on reflexao.Usuario_idUsuario = usuario.idUsuario
       INNER JOIN usuario_image on usuario_image.Usuario_idUsuario = usuario.idUsuario
@@ -98,6 +99,7 @@ class ReflexaoDAO extends BaseDAO{
       $usuario = new Usuario();
       $usuario->setNome($dado['nome']);
       $image = new Image();
+      $image->setId($dado['idUsuario_image']);
       $image->setImagePath($dado['imagePath']);
       $usuario->setImage($image);
       $reflexao->setUsuario($usuario);

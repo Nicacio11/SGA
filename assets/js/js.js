@@ -8,9 +8,12 @@ var environment = "development";
 var url;
 if(environment == "development"){
 	url="http://localhost/SGA/";
-}else{
-	url="http://www.vitornicacio.com.br/projetos/SGA/";
-}
+  }else if(url =='production'){
+     url="http://www.vitornicacio.com.br/projetos/SGA/";
+  }else{
+      url="vitor-nicacio.000webhostapp.com/projetos/SGA/";
+  }
+
 var diaSemana = ['Domingo', 'Segunda-Feira', 'Terca-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sabado'];
 var mesAno = [ 'Janeiro', 'Fevereiro', 'Marco', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro' ];
 var data = new Date();
@@ -54,8 +57,7 @@ $(function(){
 			indicators: true
 
 	  });
-	 $('.carousel').carousel();
-		
+			
 		$('.dropdown-trigger').dropdown();
 		$('.dropdown-trigger').dropdown('recalculateDimensions')
 

@@ -37,7 +37,7 @@
            usuario.nome as usuarionome
            FROM testemunho
            INNER JOIN usuario on usuario.idUsuario=testemunho.Usuario_idUsuario
-           LIMIT $offset, $perPage;");
+           ORDER BY idTestemunho DESC LIMIT $offset, $perPage;");
         $sql->execute();
 
         if($sql->rowCount()>0){
@@ -66,7 +66,7 @@
            usuario.nome as usuarionome
            FROM testemunho
            INNER JOIN usuario on usuario.idUsuario=testemunho.Usuario_idUsuario
-           WHERE testemunho.nome LIKE '%$like%'
+           WHERE testemunho.nome LIKE '%$like% ORDER BY idTestemunho DESC'
            ;");
         $sql->execute();
 

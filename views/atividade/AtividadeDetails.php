@@ -39,7 +39,7 @@
 			<div class="pan">
 				<div class="row">
 					<div class="col s4">
-						<img  class="responsive-img" 
+						<img  class="responsive-img actImage" 
 					
 					src="<?php echo BASE_URL?>assets/images/atividades/<?php echo $atividade->getImage()->getImagePath();?>">
 					</div>

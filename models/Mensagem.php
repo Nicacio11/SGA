@@ -6,12 +6,13 @@
     private $descricao;
 
 
-    public function send($tipo = array()){
-
-      if(@mail('mensageirosdeemanuel.go@gmail.com', $tipo['tipo'] ,$this->getDescricao(),$this->getEmail())){
-        return true;
-      }
-      return false;
+    public function send($tipo){
+        try{
+          mail('mensageirosdeemanuel.go@gmail.com', $tipo ,$this->getDescricao());  
+        }catch(Exception $e){
+            throw $e;
+        }
+          
     }
     public function getId(){
       return $this->id;
@@ -38,6 +39,6 @@
       $this->descricao = $descricao;
     }
     public function getDescricao(){
-      $this->descricao;
+      return $this->descricao;
     }
   }

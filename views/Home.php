@@ -35,31 +35,25 @@
 
 							<?php if(!empty($atividades)):?>
 							<div class="carousel carousel-slider center carouselinicio">
-						      <div class="carousel-fixed-item center">
-						        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-						      </div>
 						      <?php foreach ($atividades as $atividade): ?>
-						      	<a href="#"><div class="carousel-item white-text car"
+						      	<a href="<?php echo BASE_URL;?>Atividade/AtividadeDetails/<?php echo $atividade->getId();?>"><div class="carousel-item white-text car"
 									style="background-image:url('<?php echo BASE_URL;?>/assets/images/atividades/<?php echo $atividade->getImage()->getImagePath();?>')"
 										 href="#one!">
 
-						        <h2 
+						       <!-- <h2 
 						        style="
 						        background-color: lightgreen;display: 
 						        inline-block;border-radius;5px;
-						        "><?php echo $atividade->getTitulo();?></h2>
-						        <div class="container" style="white-space: normal;overflow: hidden;text-overflow: ellipsis; word-wrap: break-word;">
+						        "><?php echo $atividade->getTitulo();?></h2> ->
+						        <!--<div class="container" style="white-space: normal;overflow: hidden;text-overflow: ellipsis; word-wrap: break-word;">
 							        <p class="white-text" style="white-space: normal"><?php echo substr($atividade->getDescricao(), 0,350);?>...</p>
-						        </div>
+						        </div>-->
 						      </div></a>
 						      <?php endforeach ;?>
 					    	</div>
 					    </div>
 					    	<?php else:?>
 						    		<div class="carousel carousel-slider center carouselinicio">
-								      <div class="carousel-fixed-item center">
-								        <a class="btn waves-effect white grey-text darken-text-2">button</a>
-								      </div>
 								      <div class="carousel-item black-text car"
 											style="background-image:url('<?php echo BASE_URL;?>/assets/images/praying.jpg')"
 												 href="#one!">
@@ -88,9 +82,9 @@
 													 		<h4><?php echo  $reflexao->getTitulo()?></h4>
 												 		</div>
 														<div style="text-align:right; color:black;">
-															<h7>Data: <?php echo $reflexao->getData();?></h7>
+															<h7>Data: <?php echo date('d/m/Y \à\s H:i:s', strtotime($reflexao->getData())) ;?></h7>
 												 		</div>
-														<div class="mod">
+														<div class="mod" style="word-wrap: break-word;">
 													 		<blockquote><?php echo $reflexao->getCorpo();?></blockquote>
 												 		</div>
 														<div class="col s12 m4 offset-m8 right-align ">
@@ -143,7 +137,7 @@
 				    <div class="col m4">
 				      <div class="card">
 				        <div class="card-image">
-				          <img src="<?php echo BASE_URL; ?>/assets/images/gg.jpg">
+				          <img  style="max-height: 150px" src="<?php echo BASE_URL; ?>/assets/images/praying3.jpg">
 				          <span class="card-title">Atividades</span>
 
 				        </div>
@@ -155,8 +149,7 @@
 				    <div class="col m4">
 				      <div class="card">
 				        <div class="card-image">
-				          <img src="<?php echo BASE_URL; ?>/assets/images/gg.jpg">
-				          <span class="card-title">Pedido de Oração</span>
+				          <img style="max-height: 150px" src="<?php echo BASE_URL; ?>/assets/images/pedido.jpg">
 
 				        </div>
 				        <div class="card-content">
@@ -167,12 +160,11 @@
 				    <div class="col m4">
 				      <div class="card">
 				        <div class="card-image">
-				          <img src="<?php echo BASE_URL; ?>/assets/images/gg.jpg">
-				          <span class="card-title">Contato</span>
+				          <img style="max-height: 150px" src="<?php echo BASE_URL; ?>/assets/images/reflexao.png">
 
 				        </div>
 				        <div class="card-content">
-				          <p>Contate-nos</p>
+				          <p>Confira todas as reflexões</p>
 				        </div>
 				      </div>
 				    </div>
@@ -189,7 +181,7 @@
 			  			<?php if (!empty($galeria->getImages())):?>
 						  <div class="carousel carousel-slider">
 						  	<?php foreach($galeria->getImages() as $im):?>
-						    	<a class="carousel-item" href="#one!"><img src="<?php echo BASE_URL; ?>/assets/images/galerias/<?php echo $im->getImagePath();?>" class="img-responsive"></a>
+						    	<a class="carousel-item" href="<?php echo $im->getId();  ?>"><img src="<?php echo BASE_URL; ?>/assets/images/galerias/<?php echo $im->getImagePath();?>" class="img-responsive"></a>
 						 	<?php endforeach;?>
 						  </div><br/>
 						
@@ -204,7 +196,7 @@
 						
 							<br/>
 							<div class="vermais">
-								<a href="?php echo BASE_URL ;?>galeria" class="waves-effect waves-dark">Ver mais...</a>
+								<a href="<?php echo BASE_URL ;?>galeria" class="waves-effect waves-dark">Ver mais...</a>
 							</div>
 					<?php else :?>
 						<div class="row">
@@ -228,7 +220,7 @@
 									</div>
 									<br/>
 									<div class="vermais">
-										<a href="?php echo BASE_URL ;?>video" class="waves-effect waves-dark">Ver mais...</a>
+										<a href="<?php echo BASE_URL ;?>video" class="waves-effect waves-dark">Ver mais...</a>
 									</div>
 								<?php else :?>
 									<div class="row">
