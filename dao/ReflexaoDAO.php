@@ -9,7 +9,10 @@ class ReflexaoDAO extends BaseDAO{
   public function adicionar($reflexao){
     $retorno = false;
     try{
-        $sql = $this->db->prepare("INSERT INTO reflexao (titulo, data, corpo, Usuario_idUsuario) VALUES (:titulo, NOW(), :corpo, :idUsuario)");
+        $sql = $this->db->prepare("INSERT INTO reflexao 
+		(titulo, data, corpo, Usuario_idUsuario) 
+		VALUES 
+		(:titulo, NOW(), :corpo, :idUsuario)");
         $sql->bindValue(":titulo", $reflexao->getTitulo());
 
         $sql->bindValue(":corpo", $reflexao->getCorpo());
